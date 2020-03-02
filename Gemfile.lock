@@ -182,6 +182,9 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
+    rss (0.2.9)
+      rexml
     rubyzip (2.2.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -252,6 +255,7 @@ DEPENDENCIES
   mechanize
   puma (~> 3.11)
   rails (~> 5.2.3)
+  rss
   sass-rails (~> 5.0)
   selenium-webdriver
   sqlite3
