@@ -26,7 +26,7 @@ namespace :crawl_news_rss do
           title: item.title,
           description: item.description[/(?<=\<\/a\>).*/],
           publish_date: item.pubDate,
-          image: item.description[/src\=\"(.*?)\" \/\>/m, 1],
+          image: item.description[/src\=\"(.*?)\" align/m, 1],
           source: 'Thanh Niên',
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
