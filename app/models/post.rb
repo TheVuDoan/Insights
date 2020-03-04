@@ -1,3 +1,3 @@
 class Post < ApplicationRecord
-    scope :lastest, -> { order(created_at: :desc)}
+    scope :lastest, -> { order(publish_date: :desc).limit(10) }
 end

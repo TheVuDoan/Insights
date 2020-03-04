@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @posts = Post.first(5)
+    @posts = Post.lastest
   end
 end

@@ -1,20 +1,35 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4 header">
-  <h4 class="mb-0 text-gray-800">Top news</h4>
+  <h4 class="mb-0 text-gray-800">Bài viết hàng đầu</h4>
 </div>
 
 <div class="row">
   <% @posts.each do |post| %>
     <div class="col-xl-6 col-md-6 mb-4">
-      <div class="card h-100 py-2">
+      <div class="h-100 py-2">
         <div class="card-body">
-          <div class="row no-gutters align-items-center">
-            <div class="col mr-2">
-              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><%= post.title %></div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800"><%= post.description %></div>
-            </div>
-            <div class="col-auto">
-              <i class="fas fa-calendar fa-2x text-gray-300"></i>
-            </div>
+          <div class="row no-gutters">
+            <% if post.image.present? %>
+              <div class="col-xl-9">
+                <a href="<%= post.url %>" target="_blank">
+                  <div class="font-weight-bold mb-1">
+                    <%= post.title %>
+                  </div>
+                </a>
+                <div class="mb-0"><%= post.description %></div>
+              </div>
+              <div class="col-xl-3">
+                <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-2 border-0">
+              </div>
+            <% else %>
+              <div class="col-xl-12">
+                <div class="font-weight-bold mb-1">
+                  <a href="<%= post.url %>" target="_blank">
+                    <%= post.title %>
+                  </a>
+                </div>
+                <div class="mb-0"><%= post.description %></div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
