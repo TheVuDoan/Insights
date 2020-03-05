@@ -14,16 +14,10 @@ Source.create([
         icon: 'https://s.vnecdn.net/vnexpress/restruct/i/v94/logos/57x57.png'
     },
     {
-        name: 'Thanh Niên',
-        url:  'https://thanhnien.vn/',
-        logo: 'https://static.thanhnien.vn/v3/App_Themes/img/TNO_slogo.svg',
-        icon: 'https://thanhnien.vn/favicon.ico?1'
-    },
-    {
-        name: 'Người Lao Động',
-        url:  'https://nld.com.vn/',
-        logo: '',
-        icon: 'https://static.mediacdn.vn/nld/web_images/nld57.png'
+        name: 'Tuổi trẻ',
+        url:  'https://tuoitre.vn/',
+        logo: 'https://static.mediacdn.vn/tuoitre/web_images/LogoTTNews.png',
+        icon: 'https://statictuoitre.mediacdn.vn/web_images/favicon.ico'
     },
     {
         name: 'Vietnamnet',

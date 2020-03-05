@@ -18,38 +18,23 @@ namespace :crawl_news_rss do
       end
     end
 
-    url2 = 'https://thanhnien.vn/rss/home.rss'
+    url2 = 'https://tuoitre.vn/rss/tin-moi-nhat.rss'
     open(url2) do |rss|
       feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
-        Post.create(
+        Post.create(  
           title: item.title,
           description: item.description[/(?<=\<\/a\>).*/],
           publish_date: item.pubDate,
-          image: item.description[/src\=\"(.*?)\" align/m, 1],
+          image: item.description[/src\=\"(.*?)\" \/\>/m, 1],
           source_id: 2,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
     end
 
-    url3 = 'https://nld.com.vn/tin-moi-nhat.rss'
+    url3 = 'https://vietnamnet.vn/rss/tin-moi-nong.rss'
     open(url3) do |rss|
-      feed = RSS::Parser.parse(rss, validate: false)
-      feed.items.each do |item|
-        Post.create(
-          title: item.title,
-          description: item.description[/(?<=" \/\>).*/],
-          publish_date: item.pubDate,
-          image: item.description[/src\=\"(.*?)\" alt/m, 1],
-          source_id: 3,
-          url: item.link
-        ) if !Post.exists?(title: item.title) && item.description.present?
-      end
-    end
-
-    url4 = 'https://vietnamnet.vn/rss/tin-moi-nong.rss'
-    open(url4) do |rss|
       feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         Post.create(
@@ -57,7 +42,7 @@ namespace :crawl_news_rss do
           description: item.description,
           publish_date: item.pubDate,
           image: nil,
-          source_id: 4,
+          source_id: 3,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
