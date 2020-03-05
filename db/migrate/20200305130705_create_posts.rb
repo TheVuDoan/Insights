@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title
       t.datetime :publish_date
       t.text :description
-      t.string :source
+      t.references :source,     foreign_key: true
       t.string :image
       t.string :url
 

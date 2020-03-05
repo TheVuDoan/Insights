@@ -12,7 +12,7 @@ namespace :crawl_news_rss do
           description: item.description[/(?<=\<\/br\>).*/],
           publish_date: item.pubDate,
           image: item.description[/src\=\"(.*?)\" \>/m, 1],
-          source: 'VnExpress',
+          source_id: 1,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
@@ -27,7 +27,7 @@ namespace :crawl_news_rss do
           description: item.description[/(?<=\<\/a\>).*/],
           publish_date: item.pubDate,
           image: item.description[/src\=\"(.*?)\" align/m, 1],
-          source: 'Thanh Niên',
+          source_id: 2,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
@@ -42,7 +42,7 @@ namespace :crawl_news_rss do
           description: item.description[/(?<=" \/\>).*/],
           publish_date: item.pubDate,
           image: item.description[/src\=\"(.*?)\" alt/m, 1],
-          source: 'Người Lao Động',
+          source_id: 3,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
@@ -57,7 +57,7 @@ namespace :crawl_news_rss do
           description: item.description,
           publish_date: item.pubDate,
           image: nil,
-          source: 'Vietnamnet',
+          source_id: 4,
           url: item.link
         ) if !Post.exists?(title: item.title) && item.description.present?
       end
