@@ -24,5 +24,11 @@ Source.create([
         url:  'https://vietnamnet.vn/',
         logo: 'https://vnn-res.vgcloud.vn/ResV9/images/logo-vnn-hungcuong-d2.svg',
         icon: 'https://vnn-res.vgcloud.vn/ResV9/images/faviconvnn2018.ico'
+    },
+    {
+        name: 'Kenh14',
+        url:  'https://kenh14.vn/',
+        logo: '',
+        icon: 'https://kenh14cdn.com/web_images/kenh14-favicon.ico'
     }
 ])
