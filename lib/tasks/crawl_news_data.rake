@@ -3,20 +3,23 @@ namespace :crawl_news_data do
     require 'rss'
     require 'open-uri'
 
-    url2 = 'https://kenh14.vn/home.rss'
-    open(url2) do |rss|
-      feed = RSS::Parser.parse(rss)
-      feed.items.each do |item|
-        puts item.pubDate.utc
-        # Post.create(  
-        #   title: item.title,
-        #   description: item.description[/(?<=\<\/a\>).*/],
-        #   publish_date: item.pubDate,
-        #   image: item.description[/src\=\"(.*?)\" \/\>/m, 1],
-        #   source_id: 2,
-        #   url: item.link
-        # ) if !Post.exists?(title: item.title) && item.description.present?
+    begin
+      url3 = 'https://vietnamnet.vn/rss/tin-moi-nong.rss'
+      open(url3) do |rss|
+        feed = RSS::Parser.parse(rss)
+        feed.items.each do |item|
+          puts
+          # create_post(
+          #   item.title,
+          #   item.description,
+          #   item.pubDate.utc,
+          #   nil,
+          #   3,
+          #   item.link
+          # )
+        end
       end
+    rescue => e
     end
   end
 end

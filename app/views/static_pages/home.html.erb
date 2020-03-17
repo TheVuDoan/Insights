@@ -15,7 +15,7 @@
                     <%= post.title %>
                   </div>
                 </a>
-                <div class="mb-0"><%= post.description.html_safe %></div>
+                <div class="mb-0"><%= post.description %></div>
               </div>
               <div class="col-xl-3">
                 <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-2 border-0">
@@ -27,7 +27,7 @@
                     <%= post.title %>
                   </a>
                 </div>
-                <div class="mb-0"><%= post.description.html_safe %></div>
+                <div class="mb-0"><%= post.description %></div>
               </div>
             <% end %>
           </div>

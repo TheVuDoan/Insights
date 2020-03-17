@@ -8,14 +8,14 @@ namespace :crawl_news_rss do
       open(url1) do |rss|
         feed = RSS::Parser.parse(rss)
         feed.items.each do |item|
-          Post.create(
-            title: item.title,
-            description: item.description[/(?<=\<\/br\>).*/],
-            publish_date: item.pubDate.utc,
-            image: item.description[/src\=\"(.*?)\" \>/m, 1],
-            source_id: 1,
-            url: item.link
-          ) if !Post.exists?(title: item.title) && item.description.present?
+          create_post(
+            item.title,
+            item.description[/(?<=\<\/br\>).*/],
+            item.pubDate.utc,
+            item.description[/src\=\"(.*?)\" \>/m, 1],
+            1,
+            item.link
+          )
         end
       end
     rescue => e
@@ -26,14 +26,14 @@ namespace :crawl_news_rss do
       open(url2) do |rss|
         feed = RSS::Parser.parse(rss, false)
         feed.items.each do |item|
-          Post.create(  
-            title: item.title,
-            description: item.description[/(?<=\<\/a\>).*/],
-            publish_date: item.pubDate.utc,
-            image: item.description[/src\=\"(.*?)\" \/\>/m, 1],
-            source_id: 2,
-            url: item.link
-          ) if !Post.exists?(title: item.title) && item.description.present?
+          create_post(
+            item.title,
+            item.description[/(?<=\<\/a\>).*/],
+            item.pubDate.utc,
+            item.description[/src\=\"(.*?)\" \/\>/m, 1],
+            2,
+            item.link
+          )
         end
       end
     rescue => e
@@ -41,14 +41,14 @@ namespace :crawl_news_rss do
       open(url2) do |rss|
         feed = RSS::Parser.parse(rss, false)
         feed.items.each do |item|
-          Post.create(  
-            title: item.title,
-            description: item.description[/(?<=\<\/a\>).*/],
-            publish_date: item.pubDate.utc,
-            image: item.description[/src\=\"(.*?)\" \/\>/m, 1],
-            source_id: 2,
-            url: item.link
-          ) if !Post.exists?(title: item.title) && item.description.present?
+          create_post(
+            item.title,
+            item.description[/(?<=\<\/a\>).*/],
+            item.pubDate.utc,
+            item.description[/src\=\"(.*?)\" \/\>/m, 1],
+            2,
+            item.link
+          )
         end
       end
     end
@@ -58,14 +58,14 @@ namespace :crawl_news_rss do
       open(url3) do |rss|
         feed = RSS::Parser.parse(rss)
         feed.items.each do |item|
-          Post.create(
-            title: item.title,
-            description: item.description,
-            publish_date: item.pubDate.utc,
-            image: nil,
-            source_id: 3,
-            url: item.link
-          ) if !Post.exists?(title: item.title) && item.description.present?
+          create_post(
+            item.title,
+            item.description,
+            item.pubDate.utc,
+            nil,
+            3,
+            item.link
+          )
         end
       end
     rescue => e
@@ -76,17 +76,38 @@ namespace :crawl_news_rss do
       open(url4) do |rss|
         feed = RSS::Parser.parse(rss, false)
         feed.items.each do |item|
-          Post.create(  
-            title: item.title,
-            description: item.description[/(?<=\<\/a\>).*/],
-            publish_date: item.pubDate.utc,
-            image: item.description[/src\=\"(.*?)\" width/m, 1],
-            source_id: 4,
-            url: item.link
-          ) if !Post.exists?(title: item.title) && item.description.present?
+          create_post(
+            item.title,
+            item.description[/\<span\>(.*?)\<\/span\>/m, 1],
+            item.pubDate.utc,
+            item.description[/src\=\"(.*?)\" width/m, 1],
+            4,
+            item.link
+          )
         end
       end
     rescue => e
+    end
+  end
+
+  def create_post(title, description, publish_date, image, source_id, url)
+    Post.create(  
+      title: title,
+      description: description,
+      publish_date: publish_date,
+      image: image,
+      source_id: source_id,
+      url: url
+    ) if (time_diff(Time.now, publish_date) / 3600 <= 2) && description.present? && title.present?
+  end
+
+  def time_diff(time_a, time_b)
+    difference = time_a - time_b
+  
+    if difference > 0
+      difference
+    else
+      24 * 3600 + difference 
     end
   end
 end
