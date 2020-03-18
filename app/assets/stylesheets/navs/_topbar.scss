@@ -38,6 +38,10 @@
       outline: none;
     }
   }
+  .small {
+    font-size: 80% !important;
+    font-weight: 400 !important;
+  }
   .dropdown {
     position: static;
     .dropdown-menu {
@@ -110,8 +114,6 @@
     }
   }
 }
-
-.topbar.navbar-dark {}
 
 .topbar.navbar-light {
   .navbar-nav {

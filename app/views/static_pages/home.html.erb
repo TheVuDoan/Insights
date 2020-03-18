@@ -15,7 +15,20 @@
                     <%= post.title %>
                   </div>
                 </a>
-                <div class="mb-0"><%= post.description %></div>
+                <div>
+                  <img src="<%= post.source.icon %>" width="18px" height="18px" class="mb-2">
+                  <span class="">
+                    <%= post.source.name %> - 
+                    <% if (Time.now - post.publish_date) / 3600 < 1 %>
+                      <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
+                    <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
+                      <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
+                    <% else %>
+                      Hôm qua
+                    <% end %>
+                  </span>
+                </div>
+                <div class="mb-0 justify-content-center"><%= post.description %></div>
               </div>
               <div class="col-xl-3">
                 <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-2 border-0">
