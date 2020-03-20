@@ -28,7 +28,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     else
       clean_up_passwords(resource)
-      debugger
       flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
       redirect_to '/users/sign_up/'
     end
