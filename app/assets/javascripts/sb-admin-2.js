@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  // Initialize tooltip
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+  
   // Toggle the side navigation
   $("body").toggleClass("sidebar-toggled");
   $(".sidebar").toggleClass("toggled");
