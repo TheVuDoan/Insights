@@ -4,45 +4,42 @@
 
 <div class="row">
   <% @posts.each do |post| %>
-    <div class="col-xl-6 col-md-6 mb-3 ">
-      <div class="h-100 py-2 card-border">
+    <div class="col-xl-6 col-md-6 mb-2">
+      <div class="h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters mb-1">
+            <div class="col-xl-12">
+              <a href="<%= post.url %>" target="_blank">
+                <div class="font-weight-bold mb-1">
+                  <%= post.title %>
+                </div>
+              </a>
+            </div>
             <% if post.image.present? %>
-              <div class="col-xl-9">
-                <a href="<%= post.url %>" target="_blank">
-                  <div class="font-weight-bold mb-1">
-                    <%= post.title %>
-                  </div>
-                </a>
-                <div class="mb-1 justify-content-center"><%= post.description %></div>
-              </div>
               <div class="col-xl-3">
-                <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-2 border-0">
+                <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-1 border-0">
+              </div>
+              <div class="col-xl-9">
+                <div class="mb-1 justify-content-center"><%= post.description %></div>
+                <div class="mb-1">
+                  <img src="<%= post.source.icon %>" width="15px" height="15px" class="mb-1">
+                  <span class="small">
+                    <%= post.source.name %> - 
+                    <% if (Time.now - post.publish_date) / 3600 < 1 %>
+                      <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
+                    <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
+                      <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
+                    <% else %>
+                      Hôm qua
+                    <% end %>
+                  </span>
+                </div>
               </div>
             <% else %>
               <div class="col-xl-12">
-                <div class="font-weight-bold mb-1">
-                  <a href="<%= post.url %>" target="_blank">
-                    <%= post.title %>
-                  </a>
-                </div>
                 <div class="mb-0"><%= post.description %></div>
               </div>
             <% end %>
-          </div>
-          <div class="mb-1">
-            <img src="<%= post.source.icon %>" width="15px" height="15px" class="mb-1">
-            <span class="small">
-              <%= post.source.name %> - 
-              <% if (Time.now - post.publish_date) / 3600 < 1 %>
-                <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
-              <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
-                <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
-              <% else %>
-                Hôm qua
-              <% end %>
-            </span>
           </div>
         </div>
       </div>
