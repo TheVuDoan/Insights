@@ -35,14 +35,9 @@
                       Hôm qua
                     <% end %>
                   </span>
-                  <div role="button" class="card-button card-bookmark" data-toggle="tooltip" data-placement="bottom" data-post_id=<%= post.id %> title="Lưu bài viết">
-                    <% bookmarked = post.bookmarks.find { |bookmark| bookmark.user_id == current_user.id} %>
-                    <% if bookmarked %>
-                      <i class="fas fa-fw fa-bookmark card-bookmark-true"></i>
-                    <% else %>
-                      <i class="far fa-fw fa-bookmark card-bookmark-false"></i> 
-                    <% end %>
-                  </div>
+                  <span id="card-bookmark-<%= post.id %>">
+                    <%= render "bookmark", post: post %>
+                  </span>
                 </div>
               </div>
             <% else %>
