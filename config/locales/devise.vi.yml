@@ -55,3 +55,7 @@ vi:
       not_saved:
         one: ! '1 lỗi khi lưu %{resource}:'
         other: ! '%{count} lỗi khi lưu %{resource}:'
+  activerecord:
+    attributes:
+      user:
+        remember_me: Duy trì đăng nhập

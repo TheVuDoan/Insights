@@ -1,4 +1,4 @@
-<% bookmarked = post.bookmarks.find { |bookmark| bookmark.user_id == current_user.id } %>
+<% bookmarked = current_user && post.bookmarks.find { |bookmark| bookmark.user_id == current_user.id } %>
 <% if bookmarked && bookmarked.status %>
   <div role="button" class="card-button card-bookmark" data-toggle="tooltip" data-placement="bottom" data-post_id=<%= post.id %> title="Bỏ lưu bài viết">
     <i class="fas fa-fw fa-bookmark card-bookmark-true"></i>
