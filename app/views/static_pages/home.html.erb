@@ -4,7 +4,7 @@
 
 <div class="row">
   <% @posts.each do |post| %>
-    <div class="col-xl-6 col-md-6 mb-2">
+    <div class="col-xl-6 col-md-6">
       <div class="h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters mb-1">
@@ -31,8 +31,10 @@
                       <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
                     <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
                       <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
-                    <% else %>
+                    <% elsif (Time.now - post.publish_date) / 3600 < 48 %>
                       Hôm qua
+                    <% else %>
+                      <%= post.publish_date.strftime("%d/%m") %>
                     <% end %>
                   </span>
                   <span id="card-bookmark-<%= post.id %>">
