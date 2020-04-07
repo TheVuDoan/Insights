@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_063654) do
+ActiveRecord::Schema.define(version: 2020_04_07_085030) do
 
   create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -22,15 +22,25 @@ ActiveRecord::Schema.define(version: 2020_03_25_063654) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "label_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.datetime "publish_date"
     t.text "description"
-    t.bigint "source_id"
+    t.bigint "source_id", null: false
     t.string "image"
     t.string "url"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["source_id"], name: "index_posts_on_source_id"
   end
 
@@ -55,5 +65,6 @@ ActiveRecord::Schema.define(version: 2020_03_25_063654) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "sources"
 end
