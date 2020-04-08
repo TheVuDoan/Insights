@@ -1,5 +1,5 @@
-class CrawlWorldNewsRss < CrawlRss
-  CATEGORY_ID = 1
+class CrawlEconomyNewsRss < CrawlRss
+  CATEGORY_ID = 6
 
   private
 
@@ -8,13 +8,13 @@ class CrawlWorldNewsRss < CrawlRss
     require 'open-uri'
     
     urls = [
-      'https://vnexpress.net/rss/the-gioi.rss',
-      'https://tuoitre.vn/rss/the-gioi.rss',
-      'https://vietnamnet.vn/rss/the-gioi.rss',
-      'https://kenh14.vn/the-gioi.rss',
-      'https://vtv.vn/the-gioi.rss',
-      'https://www.doisongphapluat.com/rss/tin-the-gioi.rss',
-      'https://baogiaothong.vn/the-gioi.rss'
+      'https://vnexpress.net/rss/kinh-doanh.rss',
+      'https://tuoitre.vn/rss/kinh-doanh.rss',
+      'https://vietnamnet.vn/rss/kinh-doanh.rss',
+      'https://cdn.24h.com.vn/upload/rss/taichinhbatdongsan.rss',
+      'https://vtv.vn/kinh-te.rss',
+      'https://www.doisongphapluat.com/rss/kinh-doanh.rss',
+      'https://baogiaothong.vn/kinh-te.rss'
     ]
 
     open(urls[0]) do |rss|
@@ -67,17 +67,17 @@ class CrawlWorldNewsRss < CrawlRss
         end
       end
     end
-    
+
     open(urls[3]) do |rss|
       feed = RSS::Parser.parse(rss, false)
       feed.items.each do |item|
         if item.pubDate
           create_post(
             item.title,
-            item.description[/\<span\>(.*?)\<\/span\>/m, 1],
+            item.description[/(?<=\<br \/\>).*/],
             item.pubDate.utc,
-            item.description[/src\=\"(.*?)\" width/m, 1],
-            4,
+            item.description[/src\=\'(.*?)\' alt/m, 1],
+            5,
             item.link,
             CATEGORY_ID
           )

@@ -1,5 +1,5 @@
-class CrawlWorldNewsRss < CrawlRss
-  CATEGORY_ID = 1
+class CrawlGeneralNewsRss < CrawlRss
+  CATEGORY_ID = 2
 
   private
 
@@ -8,13 +8,13 @@ class CrawlWorldNewsRss < CrawlRss
     require 'open-uri'
     
     urls = [
-      'https://vnexpress.net/rss/the-gioi.rss',
-      'https://tuoitre.vn/rss/the-gioi.rss',
-      'https://vietnamnet.vn/rss/the-gioi.rss',
-      'https://kenh14.vn/the-gioi.rss',
-      'https://vtv.vn/the-gioi.rss',
-      'https://www.doisongphapluat.com/rss/tin-the-gioi.rss',
-      'https://baogiaothong.vn/the-gioi.rss'
+      'https://vnexpress.net/rss/thoi-su.rss',
+      'https://tuoitre.vn/rss/thoi-su.rss',
+      'https://vietnamnet.vn/rss/thoi-su.rss',
+      'https://kenh14.vn/xa-hoi.rss',
+      'https://vtv.vn/trong-nuoc.rss',
+      'https://www.doisongphapluat.com/rss/tin-trong-nuoc.rss',
+      'https://baogiaothong.vn/thoi-su-xa-hoi.rss'
     ]
 
     open(urls[0]) do |rss|

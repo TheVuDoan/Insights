@@ -1,5 +1,5 @@
-class CrawlWorldNewsRss < CrawlRss
-  CATEGORY_ID = 1
+class CrawlEducationNewsRss < CrawlRss
+  CATEGORY_ID = 4
 
   private
 
@@ -8,13 +8,13 @@ class CrawlWorldNewsRss < CrawlRss
     require 'open-uri'
     
     urls = [
-      'https://vnexpress.net/rss/the-gioi.rss',
-      'https://tuoitre.vn/rss/the-gioi.rss',
-      'https://vietnamnet.vn/rss/the-gioi.rss',
-      'https://kenh14.vn/the-gioi.rss',
-      'https://vtv.vn/the-gioi.rss',
-      'https://www.doisongphapluat.com/rss/tin-the-gioi.rss',
-      'https://baogiaothong.vn/the-gioi.rss'
+      'https://vnexpress.net/rss/giao-duc.rss',
+      'https://tuoitre.vn/rss/giao-duc.rss',
+      'https://vietnamnet.vn/rss/giao-duc.rss',
+      'https://kenh14.vn/hoc-duong.rss',
+      'https://cdn.24h.com.vn/upload/rss/giaoducduhoc.rss',
+      'https://vtv.vn/giao-duc.rss',
+      'https://www.doisongphapluat.com/rss/giao-duc.rss'
     ]
 
     open(urls[0]) do |rss|
@@ -91,10 +91,10 @@ class CrawlWorldNewsRss < CrawlRss
         if item.pubDate
           create_post(
             item.title,
-            item.description[/(?<=\<\/a\>).*/],
+            item.description[/(?<=\<br \/\>).*/],
             item.pubDate.utc,
-            item.description[/src\=\"(.*?)\" \/\>/m, 1],
-            6,
+            item.description[/src\=\'(.*?)\' alt/m, 1],
+            5,
             item.link,
             CATEGORY_ID
           )
@@ -103,15 +103,15 @@ class CrawlWorldNewsRss < CrawlRss
     end
 
     open(urls[5]) do |rss|
-      feed = RSS::Parser.parse(rss)
+      feed = RSS::Parser.parse(rss, false)
       feed.items.each do |item|
         if item.pubDate
           create_post(
             item.title,
-            item.description[/(?<=\<br\/\>).*/],
+            item.description[/(?<=\<\/a\>).*/],
             item.pubDate.utc,
-            item.description[/src\=\"(.*?)\" width/m, 1],
-            7,
+            item.description[/src\=\"(.*?)\" \/\>/m, 1],
+            6,
             item.link,
             CATEGORY_ID
           )
@@ -125,10 +125,10 @@ class CrawlWorldNewsRss < CrawlRss
         if item.pubDate
           create_post(
             item.title,
-            item.description,
+            item.description[/(?<=\<br\/\>).*/],
             item.pubDate.utc,
-            nil,
-            8,
+            item.description[/src\=\"(.*?)\" width/m, 1],
+            7,
             item.link,
             CATEGORY_ID
           )
