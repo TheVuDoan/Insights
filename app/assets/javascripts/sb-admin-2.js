@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on('turbolinks:load', function() {
   // Initialize tooltip
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()

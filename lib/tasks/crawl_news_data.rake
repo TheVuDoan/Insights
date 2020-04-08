@@ -4,11 +4,11 @@ namespace :crawl_news_data do
     require 'open-uri'
 
     begin
-      url3 = 'https://vietnamnet.vn/rss/tin-moi-nong.rss'
+      url3 = 'https://www.doisongphapluat.com/rss/tin-the-gioi.rss'
       open(url3) do |rss|
-        feed = RSS::Parser.parse(rss)
+        feed = RSS::Parser.parse(rss, false)
         feed.items.each do |item|
-          puts
+          puts item.description
           # create_post(
           #   item.title,
           #   item.description,
@@ -20,6 +20,7 @@ namespace :crawl_news_data do
         end
       end
     rescue => e
+      puts e
     end
   end
 end

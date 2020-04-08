@@ -1,21 +1,31 @@
 class BookmarksController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
-    @post = Post.includes(bookmark: :user).where(user_id: current_user.id) if user_signed_in?
+    if !user_signed_in?
+      redirect_to '/users/sign_in', alert: "Đăng nhập để sử dụng chức năng!"
+    else 
+      @post = Post.includes(bookmark: :user).where(user_id: current_user.id) if user_signed_in?
+    end
   end
 
   def create
-    post_id = params[:post_id]
-    bookmark = Bookmark.where(post_id: post_id, user_id: current_user.id).first
-    if bookmark.nil?
-      bookmark = Bookmark.create(post_id: post_id, user_id: current_user.id, status: 1)
-    else
-      bookmark.status = !bookmark.status
-      bookmark.save
+    if !user_signed_in?
+      redirect_to '/users/sign_in', alert: "Đăng nhập để sử dụng chức năng!"
+    else 
+      post_id = params[:post_id]
+      bookmark = Bookmark.where(post_id: post_id, user_id: current_user.id).first
+      if bookmark.nil?
+        bookmark = Bookmark.create(post_id: post_id, user_id: current_user.id, status: 1)
+      else
+        bookmark.status = !bookmark.status
+        bookmark.save
+      end
+      respond_to do |format|
+        format.html
+        format.js
+      end
     end
-    # respond_to do |format|
-    #   format.json { head :no_content }
-    #   format.js   { render :layout => false }
-    # end
   end
 
   private
