@@ -10,10 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 0) do
-
-=======
 ActiveRecord::Schema.define(version: 2020_04_07_085030) do
 
   create_table "bookmarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -71,5 +67,4 @@ ActiveRecord::Schema.define(version: 2020_04_07_085030) do
 
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "sources"
->>>>>>> b1df3d495c51e7d96825e07371d02c4713f5d071
 end
