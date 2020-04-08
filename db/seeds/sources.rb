@@ -30,15 +30,21 @@ Source.create([
     icon: 'https://cdn.24h.com.vn/upload/icon/icon_24h.ico'
   },
   {
-    name: 'VTCNews',
-    url:  'https://vtc.vn/',
-    logo: 'https://vtc.vn/Content/pc/theme/images/logo.png',
-    icon: 'https://vtc.vn/favicon.ico'
+    name: 'VTV News - Đài Truyền Hình Việt Nam',
+    url:  'https://vtv.vn/',
+    logo: 'https://vtv1.mediacdn.vn/web_images/trangchulogo2018.png',
+    icon: 'https://vtv1.mediacdn.vn/web_images/vtv32.png'
   },
   {
     name: 'Đời Sống & Pháp Luật',
     url:  'https://www.doisongphapluat.com/',
     logo: '',
     icon: 'https://www.doisongphapluat.com/favicon.ico?1'
+  },
+  {
+    name: 'Báo Giao Thông',
+    url:  'https://www.baogiaothong.vn/',
+    logo: 'https://cdn.baogiaothong.vn/images/logo_header.png?9',
+    icon: 'https://cdn.baogiaothong.vn/images/favicon.ico?v=1'
   }
 ])

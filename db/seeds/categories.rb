@@ -1,22 +1,26 @@
 Category.create([
   {
-    name: 'Thế giới',
+    name: 'Thế Giới',
     label_type: 'label label-danger'
   },
   {
-    name: 'Xã hội',
+    name: 'Xã Hội',
     label_type: 'label label-default'
   },
   {
-    name: 'Thể thao',
+    name: 'Thể Thao',
     label_type: 'label label-success'
   },
   {
-    name: 'Giáo dục',
+    name: 'Giáo Dục',
     label_type: 'label label-primary'
   },
   {
-    name: 'Du lịch',
+    name: 'Du Lịch',
+    label_type: 'label label-info'
+  },
+  {
+    name: 'Kinh Tế',
     label_type: 'label label-warning'
   }
 ])
