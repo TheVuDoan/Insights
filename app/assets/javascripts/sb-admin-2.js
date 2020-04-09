@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function() {
   
   // Toggle the side navigation
   $("body").toggleClass("sidebar-toggled");
-  $(".sidebar").toggleClass("toggled");
+  // $(".sidebar").toggleClass("toggled");
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");

@@ -34,9 +34,14 @@
                   <% end %>
                   <%= f.submit "Đăng nhập", class: 'btn btn-primary btn-user btn-block' %>
                   <hr>
-                  <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                  <%= link_to(raw("<i class='fab fa-facebook-f fa-fw'></i> Đăng nhập với Facebook"), user_facebook_omniauth_authorize_path, {:class => 'btn btn-facebook btn-user btn-block'}) %>
+                  <%
+=begin%>
+ <a href="index.html" class="btn btn-facebook btn-user btn-block">
                     <i class="fab fa-facebook-f fa-fw"></i> Đăng nhập với Facebook
-                  </a>
+                  </a> 
+<%
+=end%>
                 <% end %>
                 <hr>
                 <div class="text-center">

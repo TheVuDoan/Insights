@@ -123,7 +123,7 @@
     }
   }
   hr.sidebar-divider {
-    margin: 0 1rem 1rem;
+    margin: 1rem;
   }
   .sidebar-heading {
     text-align: center;
@@ -162,7 +162,7 @@
         display: block;
         width: 100%;
         text-align: left;
-        padding: 1rem;
+        padding: 0.75rem 1rem;
         width: $sidebar-base-width;
         i {
           font-size: 0.85rem;

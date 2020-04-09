@@ -5,7 +5,7 @@
 <div class="row">
   <% @posts.each do |post| %>
     <div class="col-xl-6 col-md-6">
-      <div class="h-100 py-2">
+      <div class="h-100">
         <div class="card-body">
           <div class="row no-gutters mb-1">
             <div class="col-xl-12">
@@ -22,7 +22,10 @@
                 </a>
               </div>
               <div class="col-xl-9">
-                <div class="mb-1 justify-content-center"><%= post.description %></div>
+                <div class="mb-1 justify-content-center">
+                  <span class="<%= post.category.label_type %> mr-1"><%= post.category.name %></span>
+                  <%= post.description %>
+                </div>
                 <div class="mb-1">
                   <img src="<%= post.source.icon %>" width="13px" height="13px" class="mb-1">
                   <span class="small">

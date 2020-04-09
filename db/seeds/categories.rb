@@ -1,26 +1,26 @@
 Category.create([
   {
     name: 'Thế Giới',
-    label_type: 'label label-danger'
+    label_type: 'badge badge-danger'
   },
   {
     name: 'Xã Hội',
-    label_type: 'label label-default'
+    label_type: 'badge badge-secondary'
   },
   {
     name: 'Thể Thao',
-    label_type: 'label label-success'
+    label_type: 'badge badge-success'
   },
   {
     name: 'Giáo Dục',
-    label_type: 'label label-primary'
+    label_type: 'badge badge-primary'
   },
   {
     name: 'Du Lịch',
-    label_type: 'label label-info'
+    label_type: 'badge badge-info'
   },
   {
     name: 'Kinh Tế',
-    label_type: 'label label-warning'
+    label_type: 'badge badge-warning'
   }
 ])

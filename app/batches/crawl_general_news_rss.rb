@@ -13,7 +13,6 @@ class CrawlGeneralNewsRss < CrawlRss
       'https://vietnamnet.vn/rss/thoi-su.rss',
       'https://kenh14.vn/xa-hoi.rss',
       'https://vtv.vn/trong-nuoc.rss',
-      'https://www.doisongphapluat.com/rss/tin-trong-nuoc.rss',
       'https://baogiaothong.vn/thoi-su-xa-hoi.rss'
     ]
 
@@ -103,23 +102,6 @@ class CrawlGeneralNewsRss < CrawlRss
     end
 
     open(urls[5]) do |rss|
-      feed = RSS::Parser.parse(rss)
-      feed.items.each do |item|
-        if item.pubDate
-          create_post(
-            item.title,
-            item.description[/(?<=\<br\/\>).*/],
-            item.pubDate.utc,
-            item.description[/src\=\"(.*?)\" width/m, 1],
-            7,
-            item.link,
-            CATEGORY_ID
-          )
-        end
-      end
-    end
-
-    open(urls[6]) do |rss|
       feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         if item.pubDate

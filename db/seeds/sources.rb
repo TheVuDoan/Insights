@@ -30,7 +30,7 @@ Source.create([
     icon: 'https://cdn.24h.com.vn/upload/icon/icon_24h.ico'
   },
   {
-    name: 'VTV News - Đài Truyền Hình Việt Nam',
+    name: 'VTV News',
     url:  'https://vtv.vn/',
     logo: 'https://vtv1.mediacdn.vn/web_images/trangchulogo2018.png',
     icon: 'https://vtv1.mediacdn.vn/web_images/vtv32.png'
