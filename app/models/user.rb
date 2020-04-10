@@ -7,6 +7,7 @@ class User < ApplicationRecord
   
   has_many :bookmarks
   has_many :views
+  has_many :likes
 
   class << self
     def from_omniauth(auth)

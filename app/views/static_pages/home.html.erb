@@ -11,60 +11,42 @@
             <div class="col-xl-12">
               <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
                 <div class="font-weight-bold mb-1">
-                  <%= truncate_title(raw(post.title)) %>
+                  <%= raw post.title %>
                 </div>
               </a>
             </div>
-            <% if post.image.present? %>
-              <div class="col-xl-3">
+            <div class="mb-1 justify-content-center">
+              <% if post.image.present? %> 
                 <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
-                  <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-1 border-0">
+                  <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-1 mr-2 border-0">
                 </a>
+              <% end %>
+              <span class="<%= post.category.label_type %> mb-1"><%= post.category.name %></span>
+              <div class="card-body-description">
+                <%= raw post.description %>
               </div>
-              <div class="col-xl-9">
-                <div class="mb-1 justify-content-center">
-                  <span class="<%= post.category.label_type %> mb-1"><%= post.category.name %></span>
-                  <div class="card-body-description">
-                    <%= truncate_description(raw(post.description)) %>
-                  </div>
-                </div>
-                <div class="mb-1">
-                  <img src="<%= post.source.icon %>" width="13px" height="13px" class="mb-1">
-                  <span class="small">
-                    <%= post.source.name %> - 
-                    <% if (Time.now - post.publish_date) / 3600 < 1 %>
-                      <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
-                    <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
-                      <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
-                    <% elsif (Time.now - post.publish_date) / 3600 < 48 %>
-                      Hôm qua
-                    <% else %>
-                      <%= post.publish_date.strftime("%d/%m") %>
-                    <% end %>
-                  </span>
-                  <span id="card-bookmark-<%= post.id %>">
-                    <%= render "bookmark", post: post %>
-                  </span>
-                </div>
-              </div>
-            <% else %>
-              <div class="col-xl-12">
-                <div class="mb-0"><%= post.description %></div>
-                <div class="mb-1">
-                  <img src="<%= post.source.icon %>" width="15px" height="15px" class="mb-1">
-                  <span class="small">
-                    <%= post.source.name %> - 
-                    <% if (Time.now - post.publish_date) / 3600 < 1 %>
-                      <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
-                    <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
-                      <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
-                    <% else %>
-                      Hôm qua
-                    <% end %>
-                  </span>
-                </div>
-              </div>
-            <% end %>
+            </div>
+            <div class="mb-1">
+              <img src="<%= post.source.icon %>" width="13px" height="13px" class="mb-1">
+              <span class="small">
+                <%= post.source.name %> - 
+                <% if (Time.now - post.publish_date) / 3600 < 1 %>
+                  <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
+                <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
+                  <%= ((Time.now - post.publish_date) / 3600).to_i %> giờ trước
+                <% elsif (Time.now - post.publish_date) / 3600 < 48 %>
+                  Hôm qua
+                <% else %>
+                  <%= post.publish_date.strftime("%d/%m") %>
+                <% end %>
+              </span>
+              <span id="card-bookmark-<%= post.id %>">
+                <%= render "bookmark", post: post %>
+              </span>
+              <span id="card-like-<%= post.id %>">
+                <%= render "like", post: post %>
+              </span>
+            </div>
           </div>
         </div>
       </div>

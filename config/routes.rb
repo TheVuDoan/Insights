@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :bookmarks
   resources :views, only: [:create]
+  resources :likes, only: [:create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
