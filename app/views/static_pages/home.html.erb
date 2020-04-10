@@ -9,22 +9,22 @@
         <div class="card-body">
           <div class="row no-gutters mb-1">
             <div class="col-xl-12">
-              <a href="<%= post.url %>" target="_blank">
+              <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
                 <div class="font-weight-bold mb-1">
-                  <%= post.title %>
+                  <%= raw post.title %>
                 </div>
               </a>
             </div>
             <% if post.image.present? %>
               <div class="col-xl-3">
-                <a href="<%= post.url %>" target="_blank">
+                <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
                   <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-1 border-0">
                 </a>
               </div>
               <div class="col-xl-9">
                 <div class="mb-1 justify-content-center">
                   <span class="<%= post.category.label_type %> mr-1"><%= post.category.name %></span>
-                  <%= post.description %>
+                  <%= raw post.description %>
                 </div>
                 <div class="mb-1">
                   <img src="<%= post.source.icon %>" width="13px" height="13px" class="mb-1">

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on('turbolinks:load', function() {
   $(function() {
     $('.card-bookmark').on('click', function() {
       const post_id = $(this).data('post_id')
