@@ -11,7 +11,7 @@
             <div class="col-xl-12">
               <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
                 <div class="font-weight-bold mb-1">
-                  <%= raw post.title %>
+                  <%= truncate_title(raw(post.title)) %>
                 </div>
               </a>
             </div>
@@ -23,8 +23,10 @@
               </div>
               <div class="col-xl-9">
                 <div class="mb-1 justify-content-center">
-                  <span class="<%= post.category.label_type %> mr-1"><%= post.category.name %></span>
-                  <%= raw post.description %>
+                  <span class="<%= post.category.label_type %> mb-1"><%= post.category.name %></span>
+                  <div class="card-body-description">
+                    <%= truncate_description(raw(post.description)) %>
+                  </div>
                 </div>
                 <div class="mb-1">
                   <img src="<%= post.source.icon %>" width="13px" height="13px" class="mb-1">
