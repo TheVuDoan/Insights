@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :views
   has_many :likes
 
-  LATEST_NEWS_LIMIT = 6
+  LATEST_NEWS_LIMIT = 8
   NEW_POST_TIME_LIMIT = 2 # hours
 
   scope :latest, -> { includes(:source, :category).order(publish_date: :desc).limit(LATEST_NEWS_LIMIT) }
