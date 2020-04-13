@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :views
   has_many :likes
 
-  LATEST_NEWS_LIMIT = 8
-  scope :lastest, -> { includes(:source, :category).order(publish_date: :desc).limit(LATEST_NEWS_LIMIT) }
+  LATEST_NEWS_LIMIT = 6
+  scope :latest, -> { includes(:source, :category).order(publish_date: :desc).limit(LATEST_NEWS_LIMIT) }
+  scope :from_source, -> (source_id) { where(source_id: source_id) }
 end

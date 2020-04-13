@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_084204) do
+ActiveRecord::Schema.define(version: 2020_04_13_032837) do
 
   create_table "batch_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "batch", null: false
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2020_04_10_084204) do
     t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,6 +72,16 @@ ActiveRecord::Schema.define(version: 2020_04_10_084204) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_view_sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "source_id", null: false
+    t.integer "count", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_user_view_sources_on_source_id"
+    t.index ["user_id"], name: "index_user_view_sources_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -92,6 +104,8 @@ ActiveRecord::Schema.define(version: 2020_04_10_084204) do
     t.integer "count", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_views_on_post_id"
+    t.index ["user_id"], name: "index_views_on_user_id"
   end
 
   add_foreign_key "posts", "categories"

@@ -7,5 +7,8 @@ class CreateViews < ActiveRecord::Migration[5.2]
       
       t.timestamps
     end
+
+    add_index :views, :user_id
+    add_index :views, :post_id
   end
 end
