@@ -48,10 +48,6 @@
   float: left;
 }
 
-.card-body-description {
-  display: inline;
-}
-
 .card-body a:hover{
   text-decoration-color: $gray-900;
 }
@@ -99,4 +95,9 @@
 
 .card-like-true {
   color: $blue;
+}
+
+.card-body-info::before {
+  font-size: .5625rem;
+  content: '\0000a0\002022\0000a0';
 }
