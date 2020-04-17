@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_032837) do
+ActiveRecord::Schema.define(version: 2020_04_17_065814) do
 
   create_table "batch_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "batch", null: false
@@ -108,6 +108,27 @@ ActiveRecord::Schema.define(version: 2020_04_13_032837) do
     t.index ["user_id"], name: "index_views_on_user_id"
   end
 
+  create_table "youtube_channels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "youtube_videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "youtube_channel_id", null: false
+    t.datetime "published_at", null: false
+    t.integer "view_count", default: 0, null: false
+    t.integer "like_count", default: 0, null: false
+    t.integer "dislike_count", default: 0, null: false
+    t.string "embed_html", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["youtube_channel_id"], name: "index_youtube_videos_on_youtube_channel_id"
+  end
+
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "sources"
+  add_foreign_key "youtube_videos", "youtube_channels"
 end

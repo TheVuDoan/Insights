@@ -100,4 +100,6 @@
 .card-body-info::before {
   font-size: .5625rem;
   content: '\0000a0\002022\0000a0';
+  position: relative;
+  top: -2px;
 }
