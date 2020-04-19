@@ -8,6 +8,16 @@
 
 <%= render "posts_list", posts: @posts %>
 
+<div class="row">
+  <div class="col-xl-12">
+    <div class="d-sm-flex align-items-center justify-content-between mb-2 header">
+      <h5 class="mb-2 font-weight-bold">Videos</h4>
+    </div>
+  </div>
+</div>
+
+<%= render "videos_list", videos: @videos %>
+
 <% if user_signed_in? %>
   <div class="row">
     <div class="col-xl-12">
