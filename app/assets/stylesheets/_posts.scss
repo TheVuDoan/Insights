@@ -61,3 +61,13 @@
   position: relative;
   top: -2px;
 }
+
+.post-header {
+  background: $gray-100;
+  border-left: 3px solid $blue;
+  margin-bottom: 30px;
+  .post-header-logo {
+    width: 20px;
+    margin-bottom: 4px;
+  }
+}

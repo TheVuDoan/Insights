@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xl-12">
-    <div class="d-sm-flex align-items-center justify-content-between mb-2 header">
-      <h5 class="mb-2 font-weight-bold">Tin Mới Nhất</h4>
+    <div class="d-sm-flex mb-2 post-header mr-3">
+      <h5 class="ml-3 mt-2 font-weight-bold">Tin Mới Nhất</h5>
     </div>
   </div>
 </div>
@@ -10,8 +10,8 @@
 
 <div class="row">
   <div class="col-xl-12">
-    <div class="d-sm-flex align-items-center justify-content-between mb-2 header">
-      <h5 class="mb-2 font-weight-bold">Videos</h4>
+    <div class="d-sm-flex mb-2 post-header">
+      <h5 class="ml-3 mt-2 font-weight-bold">Videos</h5>
     </div>
   </div>
 </div>
@@ -21,8 +21,12 @@
 <% if user_signed_in? %>
   <div class="row">
     <div class="col-xl-12">
-      <div class="d-sm-flex align-items-center justify-content-between mb-2 header">
-        <h5 class="mb-2 font-weight-bold">Tin khác từ <%= @most_visited_source.name %></h4>
+      <div class="d-sm-flex mb-2 post-header">
+        <h5 class="ml-3 mt-2 font-weight-bold">
+          Tin khác từ
+          <img class="post-header-logo" src="<%= @most_visited_source.icon %>"/>
+          <%= @most_visited_source.name %>
+        </h5>
       </div>
     </div>
   </div>
