@@ -18,18 +18,35 @@
 
 <%= render "videos_list", videos: @videos %>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @most_visited_category.present? && @most_visited_source.present? %>
   <div class="row">
-    <div class="col-xl-12">
-      <div class="d-sm-flex mb-2 post-header">
-        <h5 class="ml-3 mt-2 font-weight-bold">
-          Tin khác từ
-          <img class="post-header-logo" src="<%= @most_visited_source.icon %>"/>
-          <%= @most_visited_source.name %>
-        </h5>
+    <div class="col-xl-8">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="d-sm-flex mb-2 post-header">
+            <h5 class="ml-3 mt-2 font-weight-bold">
+              Tin <%= @most_visited_category.name %>
+            </h5>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <%= render "posts_list", posts: @most_visited_source_posts %>
+      <%= render "posts_list", posts: @most_visited_category_posts %>
+    </div>
+
+    <div class="col-xl-4">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="d-sm-flex mb-2 post-header">
+            <h5 class="ml-3 mt-2 font-weight-bold">
+              Tin khác từ
+              <img class="post-header-logo" src="<%= @most_visited_source.icon %>"/>
+              <%= @most_visited_source.name %>
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <%= render "posts_list", posts: @most_visited_source_posts %>
+    </div>
 <% end %>

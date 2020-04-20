@@ -12,6 +12,7 @@ class ViewsController < ApplicationController
         view.count = view.count + 1
         view.save
       end
+
       source_id = Post.find(post_id).source_id
       source_view = UserViewSource.where(source_id: source_id, user_id: current_user.id).first
       if source_view.nil?
@@ -19,6 +20,15 @@ class ViewsController < ApplicationController
       else
         source_view.count = source_view.count + 1
         source_view.save
+      end
+
+      category_id = Post.find(post_id).category_id
+      category_view = UserViewCategory.where(category_id: category_id, user_id: current_user.id).first
+      if category_view.nil?
+        category_view = UserViewCategory.create(category_id: category_id, user_id: current_user.id, count: 1)
+      else
+        category_view.count = category_view.count + 1
+        category_view.save
       end
     end
   end
