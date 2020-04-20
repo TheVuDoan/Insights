@@ -17,7 +17,7 @@
               <span class="small">
                 <%= video.youtube_channel.title %>
               </span>
-              <span class="small card-body-info">
+              <span class="small post-info">
                 <% if (Time.now - video.published_at) / 3600 < 1 %>
                   <%= ((Time.now - video.published_at) / 60).to_i %> phút trước
                 <% elsif (Time.now - video.published_at) / 3600 < 24 %>

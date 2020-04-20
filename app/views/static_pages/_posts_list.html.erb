@@ -14,7 +14,7 @@
             <div class="mb-1">
               <% if post.image.present? %> 
                 <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
-                  <img src="<%= post.image %>" alt="<%= post.title %>" class="card-body-img mt-1 mr-2 border-0">
+                  <img src="<%= post.image %>" alt="<%= post.title %>" class="post-img mt-1 mr-2 border-0">
                 </a>
               <% end %>
               <div class="card-body-description">
@@ -26,7 +26,7 @@
               <span class="small">
                 <%= post.source.name %>
               </span>
-              <span class="small card-body-info">
+              <span class="small post-info">
                 <% if (Time.now - post.publish_date) / 3600 < 1 %>
                   <%= ((Time.now - post.publish_date) / 60).to_i %> phút trước
                 <% elsif (Time.now - post.publish_date) / 3600 < 24 %>
@@ -37,7 +37,7 @@
                   <%= post.publish_date.strftime("%d/%m") %>
                 <% end %>
               </span>
-              <span class="small card-body-info mr-2">
+              <span class="small post-info mr-2">
                 <%= post.category.name %>
               </span>
               <span id="card-bookmark-<%= post.id %>">

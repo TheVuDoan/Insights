@@ -1,0 +1,63 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.post-img {
+  width: 25%;
+  max-height: 68px;
+  display: block;
+  border-radius: 5%;
+  float: left;
+}
+
+.post-button {
+  display: inline-flex;
+  box-pack: center;
+  justify-content: center;
+  box-align: center;
+  align-items: center;
+  padding: 0;
+  line-height: 1;
+  font-size: 0.7rem;
+  vertical-align: middle;
+  text-align: center;
+  border: 0;
+  border-radius: 4px;
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.post-button:hover {
+  box-shadow: 0 1px 1px 1px rgba(189,193,198,0.502);
+}
+
+.tooltip-inner {
+  font-size: 12px;
+  background: $gray-600;
+  color: $white;
+  text-align: left;
+}
+
+.bs-tooltip-auto[x-placement^=bottom] .arrow::before,
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: transparent;
+}
+
+.post-bookmark-true {
+  color: $blue;
+}
+
+.post-like-true {
+  color: $red;
+}
+
+.post-info::before {
+  font-size: .5625rem;
+  content: '\0000a0\002022\0000a0';
+  position: relative;
+  top: -2px;
+}
