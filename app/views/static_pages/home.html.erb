@@ -1,3 +1,18 @@
+<div class="row mb-5">
+  <div class="col-xl-2 font-weight-bold">
+    Danh mục:
+  </div>
+  <div class="col-xl-10">
+    <div class="row">
+      <% @categories.each do |category| %>
+        <a href="#" class="categories-list <%= category.label_type %>">
+          <%= category.name %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-xl-12">
     <div class="d-sm-flex mb-2 post-header mr-3">

@@ -4,6 +4,9 @@
   min-height: 100vh;
   .nav-item {
     position: relative;
+    a {
+      color: $gray-800;
+    }
     &:last-child {
       margin-bottom: 1rem;
     }
@@ -17,8 +20,12 @@
       }
     }
     &.active {
+      background-color: rgba(66,133,244,0.149);
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
       .nav-link {
         font-weight: 700;
+        color: $blue;
       }
     }
     // Accordion
