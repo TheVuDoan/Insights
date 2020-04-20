@@ -4,7 +4,8 @@
 
 .post-img {
   width: 25%;
-  max-height: 68px;
+  min-width: 105px;
+  max-height: 63px;
   display: block;
   border-radius: 5%;
   float: left;

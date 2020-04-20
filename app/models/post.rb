@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   has_many :likes
 
   LATEST_NEWS_LIMIT = 8
-  FROM_SOURCE_LIMIT = 3
+  FROM_SOURCE_LIMIT = 4
   FROM_CATEGORY_LIMIT = 4
 
   scope :latest, -> { includes(:source, :category).order(publish_date: :desc).limit(LATEST_NEWS_LIMIT) }
