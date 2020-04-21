@@ -5,7 +5,7 @@ class BookmarksController < ApplicationController
     if !user_signed_in?
       redirect_to '/users/sign_in', alert: "Đăng nhập để sử dụng chức năng!"
     else 
-      @post = Post.includes(bookmark: :user).where(user_id: current_user.id) if user_signed_in?
+      @bookmarked_posts = Post.bookmarked_by(current_user.id).page(params[:page]).per(20)
     end
   end
 

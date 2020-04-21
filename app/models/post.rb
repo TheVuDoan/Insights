@@ -16,4 +16,7 @@ class Post < ApplicationRecord
   scope :from_category, -> (category_id) { 
     includes(:source, :category).where(category_id: category_id).order(publish_date: :desc).limit(FROM_CATEGORY_LIMIT)
   }
+  scope :bookmarked_by, -> (user_id) {
+    joins(:bookmarks).where('bookmarks.user_id = ?', user_id).order(publish_date: :desc)
+  }
 end

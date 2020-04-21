@@ -67,11 +67,7 @@
           display: block;
           color: $gray-900;
           text-decoration: none;
-          border-radius: $border-radius;
           white-space: nowrap;
-          &:hover {
-            background-color: $gray-200;
-          }
           &:active {
             background-color: $gray-300;
           }

@@ -1,5 +1,5 @@
 <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
-  <li class="nav-item active">
+  <li class="nav-item <%= active_class('static_pages', 'home') %>">
     <a class="nav-link" href="/">
       <i class="fas fa-fw fa-home"></i>
       <span>Trang chủ</span></a>
@@ -7,14 +7,14 @@
 
   <hr class="sidebar-divider">
 
-  <li class="nav-item">
+  <li class="nav-item <%= active_class('posts', 'index') %>">
     <a class="nav-link collapsed" href="/posts/">
       <i class="fas fa-fw fa-newspaper"></i>
       <span>Tin mới nhất</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item <%= active_class('bookmarks', 'index') %>">
     <a class="nav-link collapsed" href="/bookmarks/">
       <i class="fas fa-fw fa-bookmark"></i>
       <span>Tin đã lưu</span>
@@ -40,6 +40,25 @@
     <a class="nav-link" href="charts.html">
       <i class="fas fa-fw fa-users"></i>
       <span>Mạng xã hội</span></a>
+  </li>
+
+  <hr class="sidebar-divider">
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <i class="fas fa-fw fa-list"></i>
+      <span>Danh mục</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item mb-1" href="login.html" style="border-left: 3px solid #e74a3b;">Tin Thế Giới</a>
+        <a class="collapse-item mb-1" href="blank.html" style="border-left: 3px solid #f6c23e;">Tin Kinh Tế</a>
+        <a class="collapse-item mb-1" href="forgot-password.html" style="border-left: 3px solid #1cc88a;">Tin Thể Thao</a>  
+        <a class="collapse-item mb-1" href="404.html" style="border-left: 3px solid #36b9cc;">Tin Du Lịch</a>
+        <a class="collapse-item mb-1" href="404.html" style="border-left: 3px solid #4e73df;">Tin Giáo Dục</a>
+        <a class="collapse-item mb-1" href="register.html" style="border-left: 3px solid #858796;">Tin Xã Hội</a>
+      </div>
+    </div>
   </li>
 
   <hr class="sidebar-divider d-none d-md-block">

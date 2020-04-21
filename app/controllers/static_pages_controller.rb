@@ -13,7 +13,5 @@ class StaticPagesController < ApplicationController
     end
 
     @videos = YoutubeVideo.recent_highest_score
-
-    @categories = Category.all
   end
 end
