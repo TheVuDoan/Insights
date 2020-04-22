@@ -18,7 +18,7 @@
 
 <%= render "videos_list", videos: @videos %>
 
-<% if user_signed_in? && @most_visited_category.present? && @most_visited_source.present? %>
+<% if @most_visited_category.present? && @most_visited_source.present? %>
   <div class="row">
     <div class="col-xl-8">
       <div class="row">

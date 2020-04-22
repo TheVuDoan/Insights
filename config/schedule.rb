@@ -24,3 +24,7 @@ set :environment, "development"
 every :hour do
   rake "crawl_news_rss:run"
 end
+
+every 1.day, at: ['9:45 am', '8:00 pm'] do
+  rake "crawl_youtube_videos:run"
+end

@@ -19,4 +19,10 @@ class Post < ApplicationRecord
   scope :bookmarked_by, -> (user_id) {
     joins(:bookmarks).where('bookmarks.user_id = ?', user_id).order(publish_date: :desc)
   }
+  scope :most_recently_visited_source, -> (session_posts) {
+    includes(:source, :category).where(id: session_posts).group(:source_id).order('count(source_id) DESC').first
+  }
+  scope :most_recently_visited_category, -> (session_posts) {
+    includes(:source, :category).where(id: session_posts).group(:category_id).order('count(category_id) DESC').first
+  }
 end
