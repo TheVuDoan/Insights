@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-  root 'static_pages#home'
-  get 'static_pages/home'
+  root 'home#home'
+  get 'home/home'
   
   resources :posts
   resources :categories, param: :slug

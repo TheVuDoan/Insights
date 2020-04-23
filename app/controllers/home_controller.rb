@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class HomeController < ApplicationController
   def home
     set_post_data
     set_most_visited_data
