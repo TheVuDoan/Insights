@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   
   resources :posts
+  resources :categories, param: :slug
   resources :bookmarks
   resources :views, only: [:create]
   resources :likes, only: [:create]

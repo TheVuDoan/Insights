@@ -6,6 +6,10 @@ class YoutubeVideo < ApplicationRecord
     .sort_by(&:score).reverse.first(6) 
   }
 
+  scope :sort_by_highest_score, -> {
+    includes(:youtube_channel).sort_by(&:score).reverse
+  }
+
   def score
     view_count + like_count * 5 - dislike_count * 10
   end
