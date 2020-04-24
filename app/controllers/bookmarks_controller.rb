@@ -2,9 +2,7 @@ class BookmarksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if !user_signed_in?
-      redirect_to '/users/sign_in', alert: "Đăng nhập để sử dụng chức năng!"
-    else 
+    if user_signed_in?
       @bookmarked_posts = Post.bookmarked_by(current_user.id).page(params[:page]).per(20)
     end
   end

@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col-xl-7">
+    <h3 class="text-gray-800 mb-5 text-center font-weight-bold">
+      Đăng nhập để sử dụng tất cả chức năng của Insights
+    </h3>
+    <ul class="mb-4">
+      <li>Xem các tin tức phù hợp với sở thích cá nhân tại <b>Dành Cho Bạn</b></li>
+      <li>Lưu các bài viết hay để xem sau</li>
+      <li>Tương tác với bài viết, giúp chúng tôi kiểm soát nội dung tốt hơn</li>
+    </ul>
+    <div class="text-center">
+      <a href="/users/sign_in/">
+        <button type="button" class="btn btn-primary mr-2 d-none d-lg-inline small">Đăng nhập</button>
+      </a>
+      <span class="mr-2">hoặc</span>
+      <%= link_to(raw("<i class='fab fa-facebook-f fa-fw'></i> Đăng nhập nhanh với Facebook"), user_facebook_omniauth_authorize_path, {:class => 'btn btn-facebook btn-user'}) %>
+    </div>
+  </div>
+</div>
