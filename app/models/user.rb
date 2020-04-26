@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :user_view_sources
 
+  before_create :set_default_info
+
   class << self
     def from_omniauth(auth)
       result = User.where(email: auth.info.email).first
@@ -29,5 +31,12 @@ class User < ApplicationRecord
         end
       end
     end
+  end
+
+  private
+
+  def set_default_info
+    self.image ||= '/images/default_user.jpg'
+    self.provider ||= 'insights'
   end
 end

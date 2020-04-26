@@ -56,6 +56,16 @@ vi:
         one: ! '1 lỗi khi lưu %{resource}:'
         other: ! '%{count} lỗi khi lưu %{resource}:'
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: 'Email đã được đăng kí! Vui lòng chọn email khác.'
+            password:
+              too_short: 'Mật khẩu quá ngắn. Mật khẩu tối thiểu 6 kí tự.'
+            password_confirmation:
+              confirmation: 'Mật khẩu không trùng khớp.'
     attributes:
       user:
         remember_me: Duy trì đăng nhập

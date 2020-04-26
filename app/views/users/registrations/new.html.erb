@@ -7,19 +7,7 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="p-5">
-                <% flash.each do |name, msg| %>
-                  <% if msg.class == Array %>
-                    <% msg.each do |message| %>
-                      <div class="alert alert-danger" role="alert">
-                        <%= message %>
-                      </div>
-                    <% end %>
-                  <% else %>
-                      <div class="alert alert-danger" role="alert">
-                        <%= msg %>
-                      </div>
-                  <% end %>
-                <% end %> 
+                <%= devise_error_messages! %>
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản mới</h1>
                 </div>
