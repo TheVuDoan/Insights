@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   resources :posts
   resources :categories, param: :slug
+  resources :sources, param: :slug
   resources :bookmarks
   resources :views, only: [:create]
   resources :likes, only: [:create]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_140617) do
+ActiveRecord::Schema.define(version: 2020_04_28_142346) do
 
   create_table "batch_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "batch", null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_04_22_140617) do
 
   create_table "sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.string "url"
     t.string "logo"
     t.string "icon"

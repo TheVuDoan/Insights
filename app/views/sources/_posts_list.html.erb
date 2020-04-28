@@ -24,9 +24,7 @@
             <div class="mb-1 text-gray-600">
               <img src="<%= post.source.icon %>" width="13px" height="13px">
               <span class="small">
-                <a href="/sources/<%= post.source.slug %>/">
-                  <%= post.source.name %>
-                </a>
+                <%= post.source.name %>
               </span>
               <span class="small post-info">
                 <% if (Time.now - post.publish_date) / 3600 < 1 %>
@@ -40,9 +38,7 @@
                 <% end %>
               </span>
               <span class="small post-info mr-2">
-                <a href="/categories/<%= post.category.slug %>/">
-                  <%= post.category.name %>
-                </a>
+                <%= post.category.name %>
               </span>
               <span id="card-bookmark-<%= post.id %>">
                 <%= render "bookmark", post: post %>
@@ -57,3 +53,5 @@
     </div>
   <%end %>
 </div>
+
+<%= paginate posts %>
