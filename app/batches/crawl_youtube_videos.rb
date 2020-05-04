@@ -7,7 +7,9 @@ class CrawlYoutubeVideos < ApplicationBatch
       channel.videos.each do |video|
         if video.published_at > 6.hours.ago
           YoutubeVideo.create(
+            youtube_id: video.id,
             title: video.title,
+            thumbnail_url: video.thumbnail_url(size = :high),
             youtube_channel_id: youtube_channel.id,
             published_at: video.published_at,
             view_count: video.view_count,

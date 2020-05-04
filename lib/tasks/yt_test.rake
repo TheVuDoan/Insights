@@ -4,7 +4,7 @@ namespace :yt_test do
     videos = channel.videos
     videos.each do |video|
       if video.published_at > 6.hours.ago
-        puts video.title 
+        puts video.thumbnail_url
       else
         break
       end

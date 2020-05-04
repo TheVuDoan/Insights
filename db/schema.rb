@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_142346) do
+ActiveRecord::Schema.define(version: 2020_05_04_074354) do
 
   create_table "batch_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "batch", null: false
@@ -128,7 +128,9 @@ ActiveRecord::Schema.define(version: 2020_04_28_142346) do
   end
 
   create_table "youtube_videos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "youtube_id"
     t.string "title", null: false
+    t.string "thumbnail_url"
     t.bigint "youtube_channel_id", null: false
     t.datetime "published_at", null: false
     t.integer "view_count", default: 0, null: false

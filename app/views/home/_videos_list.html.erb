@@ -6,11 +6,17 @@
           <div class="row no-gutters mb-1">
             <div class="col-xl-12">
               <div class="video-wrapper">
-                <%= video.embed_html.html_safe %>
+                <a href="https://www.youtube.com/watch?v=<%= video.youtube_id %>" target="_blank">
+                  <img src="<%= video.thumbnail_url %>" alt="<%= video.title %>">
+                </a>
               </div>
             </div>
             <div class="mb-1">
-              <%= raw video.title %>
+              <a href="https://www.youtube.com/watch?v=<%= video.youtube_id %>" target="_blank">
+                <div class="text-gray-900">
+                  <%= raw video.title %>
+                </div>
+              </a>
             </div>
             <div class="mb-1 text-gray-600">
               <i class="fab fa-fw fa-youtube"></i>
