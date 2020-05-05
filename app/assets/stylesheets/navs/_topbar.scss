@@ -1,6 +1,12 @@
 // Topbar
 .topbar {
   height: $topbar-base-height;
+  img {
+    height: 130px;
+  }
+  .input-group {
+    width: 100% !important;
+  }
   #sidebarToggleTop {
     height: 2.5rem;
     width: 2.5rem;
