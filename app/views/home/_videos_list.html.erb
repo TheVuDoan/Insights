@@ -31,7 +31,7 @@
                 <% elsif (Time.now - video.published_at) / 3600 < 48 %>
                   Hôm qua
                 <% else %>
-                  <%= post.publish_date.strftime("%d/%m") %>
+                  <%= video.published_at.strftime("%d/%m") %>
                 <% end %>
               </span>
             </div>

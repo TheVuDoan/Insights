@@ -104,6 +104,8 @@ GEM
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     hashie (4.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -305,6 +307,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-rails
+  gretel
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
