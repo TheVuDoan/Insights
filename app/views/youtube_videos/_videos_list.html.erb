@@ -1,0 +1,43 @@
+<div class="row mb-4">
+  <% videos.each do |video| %>
+    <div class="col-xl-4 col-md-4">
+      <div class="h-100">
+        <div class="card-body pl-0">
+          <div class="row no-gutters mb-1">
+            <div class="col-xl-12">
+              <div class="video-wrapper">
+                <a href="https://www.youtube.com/watch?v=<%= video.youtube_id %>" target="_blank">
+                  <img src="<%= video.thumbnail_url %>" alt="<%= video.title %>">
+                </a>
+              </div>
+            </div>
+            <div class="mb-1">
+              <a href="https://www.youtube.com/watch?v=<%= video.youtube_id %>" target="_blank">
+                <div class="text-gray-900">
+                  <%= raw video.title %>
+                </div>
+              </a>
+            </div>
+            <div class="mb-1 text-gray-600">
+              <i class="fab fa-fw fa-youtube"></i>
+              <span class="small">
+                <%= video.youtube_channel.title %>
+              </span>
+              <span class="small post-info">
+                <% if (Time.now - video.published_at) / 3600 < 1 %>
+                  <%= ((Time.now - video.published_at) / 60).to_i %> phút trước
+                <% elsif (Time.now - video.published_at) / 3600 < 24 %>
+                  <%= ((Time.now - video.published_at) / 3600).to_i %> giờ trước
+                <% elsif (Time.now - video.published_at) / 3600 < 48 %>
+                  Hôm qua
+                <% else %>
+                  <%= post.publish_date.strftime("%d/%m") %>
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end %>
+</div>

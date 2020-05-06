@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'home/home'
   
   resources :posts
+  resources :youtube_videos, path: 'videos', as: :youtube_videos, only: [:index]
   resources :categories, param: :slug
   resources :sources, param: :slug
   resources :bookmarks
