@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :posts do
-  link "Tin mới nhất", posts_path
+  link "Tất cả tin tức", posts_path
 end
 
 crumb :bookmarks do

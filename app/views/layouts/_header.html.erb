@@ -27,16 +27,14 @@
       </div>
     </li>
 
-    <form class="form-inline navbar-search">
+    <%= form_for :post, url: posts_path, method: :get, enforce_utf8: false, html: {class: 'form-inline navbar-search'} do |form| %>
       <div class="input-group">
-        <input type="text" class="form-control bg-light border-0 small" placeholder="Tìm kiếm..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search fa-sm"></i>
-          </button>
-        </div>
+        <%= text_field_tag :s, params[:s], class: 'form-control bg-light border-0 small', placeholder: 'Tìm kiếm...' %>
+        <%= button_tag(type: "submit", class: "btn btn-primary", name: nil) do %>
+          <i class="fas fa-search fa-sm"></i>
+        <% end %>
       </div>
-    </form>
+    <% end %>
 
     <div class="topbar-divider d-none d-sm-block"></div>
 

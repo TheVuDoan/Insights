@@ -3,7 +3,14 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="d-sm-flex mb-2 post-header mr-3">
-      <h5 class="ml-3 mt-2 font-weight-bold">Tin Mới Nhất</h5>
+      <% if params[:s] %>
+        <h5 class="ml-3 mt-2 font-weight-bold">
+          Kết quả tìm kiếm với từ khóa
+          "<span class="text-blue"><%= params[:s] %></span>"
+        </h5>
+      <% else %>
+        <h5 class="ml-3 mt-2 font-weight-bold">Tất cả tin tức</h5>
+      <% end %>
     </div>
   </div>
 </div>
