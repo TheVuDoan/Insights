@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def home
     set_post_data
+    set_recommend_post_data
     set_most_visited_data
     set_video_data
   end
@@ -9,6 +10,10 @@ class HomeController < ApplicationController
 
   def set_post_data
     @posts = Post.latest
+  end
+
+  def set_recommend_post_data
+    @recommend_posts = Post.recommend_posts(session[:recent_posts]).first(6)
   end
 
   def set_most_visited_data

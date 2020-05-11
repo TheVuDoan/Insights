@@ -8,6 +8,18 @@
 
 <%= render "posts_list", posts: @posts %>
 
+<% if @recommend_posts %>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="d-sm-flex mb-2 post-header mr-3">
+        <h5 class="ml-3 mt-2 font-weight-bold">Dựa trên tin bạn đã xem</h5>
+      </div>
+    </div>
+  </div>
+
+  <%= render "posts_list", posts: @recommend_posts %>
+<% end %>
+
 <div class="row">
   <div class="col-xl-12">
     <div class="d-sm-flex mb-2 post-header mr-3">

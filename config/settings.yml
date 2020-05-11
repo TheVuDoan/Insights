@@ -5,6 +5,8 @@ defaults: &defaults
   google:
     youtube:
       api_key: <%= ENV['YOUTUBE_API_KEY'] %>
+  vietnamese_stopwords: [bị, các, chiếc, của, cũng, đã, để, đến, được, khi, khiến, là, như, những, 
+                        ngay, ở, sau, sẽ, tại, trên, trong, và, vào, vì, với]
 
 development:
   <<: *defaults

@@ -1,3 +1,6 @@
+require 'matrix'
+require 'tf-idf-similarity'
+
 class Post < ApplicationRecord
   belongs_to :source
   belongs_to :category
@@ -31,4 +34,38 @@ class Post < ApplicationRecord
   scope :most_recently_visited_category, -> (session_posts) {
     includes(:source, :category).where(id: session_posts).group(:category_id).order('count(category_id) DESC').first
   }
+
+  def soup
+    stop_word = Settings.vietnamese_stopwords
+    processed_title = title.gsub(/[[:space:]]/, ' ').split(" ") - stop_word
+    processed_description = description.gsub(/[[:space:]]/, ' ').split(" ") - stop_word
+    soup = processed_title.concat processed_description
+    soup.uniq.join(" ")
+  end
+
+  class << self
+    def recommend_posts(session_posts)
+      posts = Post.where('publish_date > ?', 2.hours.ago).or(where(id: session_posts))
+      n_posts = posts.count
+      corpus = []
+      posts.each do |post|
+        corpus << TfIdfSimilarity::Document.new(post.soup)
+      end
+      model = TfIdfSimilarity::TfIdfModel.new(corpus)
+      matrix = model.similarity_matrix
+
+      visited_post_vector = Vector.zero(n_posts)
+      visited_posts = Post.where(id: session_posts)
+      visited_posts.each do |post|
+        visited_post_vector += matrix.row(model.text_index(post.soup))
+      end
+
+      original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.first(13).drop(3)
+      recommend_posts = []
+      original_indices.each do |i|
+        recommend_posts << posts[i]
+      end
+      recommend_posts
+    end
+  end
 end

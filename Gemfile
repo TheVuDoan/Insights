@@ -19,6 +19,7 @@ gem 'yt', '~> 0.32.5'
 gem 'settingslogic'
 gem 'gretel'
 gem 'ransack'
+gem 'tf-idf-similarity'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
