@@ -34,6 +34,9 @@ class Post < ApplicationRecord
   scope :most_recently_visited_category, -> (session_posts) {
     includes(:source, :category).where(id: session_posts).group(:category_id).order('count(category_id) DESC').first
   }
+  scope :most_viewed_daily, -> () {
+    where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where('view_count > ?', 0).order('view_count DESC')
+  }
 
   def soup
     stop_word = Settings.vietnamese_stopwords
@@ -45,7 +48,8 @@ class Post < ApplicationRecord
 
   class << self
     def recommend_posts(session_posts)
-      posts = Post.where('publish_date > ?', 2.hours.ago).or(where(id: session_posts))
+      return unless session_posts.present?
+      posts = Post.where('publish_date > ?', 3.hours.ago).or(where(id: session_posts))
       n_posts = posts.count
       corpus = []
       posts.each do |post|
@@ -56,11 +60,12 @@ class Post < ApplicationRecord
 
       visited_post_vector = Vector.zero(n_posts)
       visited_posts = Post.where(id: session_posts)
+      n_visited_posts = visited_posts.count
       visited_posts.each do |post|
         visited_post_vector += matrix.row(model.text_index(post.soup))
       end
 
-      original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.first(13).drop(3)
+      original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.drop(n_visited_posts)
       recommend_posts = []
       original_indices.each do |i|
         recommend_posts << posts[i]

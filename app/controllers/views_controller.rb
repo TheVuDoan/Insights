@@ -16,6 +16,10 @@ class ViewsController < ApplicationController
     end
     session[:recent_posts] = recent_posts
 
+    post = Post.where(id: post_id).first
+    post.view_count = post.view_count + 1
+    post.save
+
     if user_signed_in?
       view = View.where(post_id: post_id, user_id: current_user.id).first
       if view.nil?

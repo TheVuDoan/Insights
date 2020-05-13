@@ -19,8 +19,10 @@ crumb :categories do
 end
 
 crumb :category do |category|
-  link category.name, category
-  parent :categories
+  if category.present?
+    link category.name, category
+    parent :categories
+  end
 end
 
 crumb :sources do
@@ -28,8 +30,10 @@ crumb :sources do
 end
 
 crumb :source do |source|
-  link source.name, source
-  parent :sources
+  if source.present?
+    link source.name, source
+    parent :sources
+  end
 end
 
 # crumb :projects do

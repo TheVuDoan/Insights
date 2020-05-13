@@ -15,4 +15,8 @@
   </div>
 </div>
 
-<%= render "posts_list", posts: @posts %>
+<% if @posts.present? %>
+  <%= render "posts_list", posts: @posts %>
+<% else %>
+  <%= render "static_pages/page_not_found" %>
+<% end %>

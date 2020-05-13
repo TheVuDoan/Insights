@@ -1,15 +1,23 @@
 <% breadcrumb :bookmarks, @bookmarked_posts %>
 
 <% if user_signed_in? %>
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="d-sm-flex mb-2 post-header mr-3">
-        <h5 class="ml-3 mt-2 font-weight-bold">Tin Đã Lưu</h5>
+  <% if @bookmarked_posts.present? %>
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="d-sm-flex mb-2 post-header mr-3">
+          <h5 class="ml-3 mt-2 font-weight-bold">Tin Đã Lưu</h5>
+        </div>
       </div>
     </div>
-  </div>
 
-  <%= render "posts_list", posts: @bookmarked_posts %>
+    <%= render "posts_list", posts: @bookmarked_posts %>
+  <% else %>
+    <div class="bookmark-wrapper">
+      Tin đã lưu của bạn sẽ xuất hiện tại đây.
+      <br/><br/>
+      <a href="/posts/">Xem danh sách tin &rarr; </a>
+    </div>
+  <% end %>
 <% else %>
   <%= render "static_pages/require_login_page" %>
 <% end %>
