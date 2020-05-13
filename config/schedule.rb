@@ -19,12 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :environment, "development"
+require_relative "environment"
+
+set :environment, Rails.env
 
 every :hour do
   rake "crawl_news_rss:run"
 end
 
-every 1.day, at: ['9:45 am', '8:00 pm'] do
+every 1.day, at: ['11:00 am', '5:00 pm', '11:00 pm'] do
   rake "crawl_youtube_videos:run"
 end
