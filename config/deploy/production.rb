@@ -65,3 +65,5 @@ set :rails_env, :production
 set :deploy_to, "/deploy/apps/insights"
 set :branch, :master
 server "34.235.142.66", user: "www", roles: %w(web app db)
+
+set :whenever_path, ->{ release_path }

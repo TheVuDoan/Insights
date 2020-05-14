@@ -25,6 +25,7 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 
 set :whenever_command, "bundle exec whenever"
+set :whenever_path, ->{ release_path }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
