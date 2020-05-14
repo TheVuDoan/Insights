@@ -30,6 +30,8 @@ set :whenever_path, ->{ release_path }
 set :bundle_gemfile,  "server/Gemfile"
 require "whenever/capistrano"
 
+after "deploy", "whenever:update_crontab"
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
