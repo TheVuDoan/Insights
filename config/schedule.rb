@@ -23,8 +23,6 @@ require_relative "environment"
 
 set :environment, Rails.env
 
-env 'PATH', ENV['PATH']
-
 every :hour do
   rake "crawl_news_rss:run"
 end
