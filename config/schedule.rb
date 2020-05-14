@@ -23,6 +23,8 @@ require_relative "environment"
 
 set :environment, Rails.env
 
+set :bundle_command, "/usr/local/bin/bundle exec"
+
 every :hour do
   rake "crawl_news_rss:run"
 end
