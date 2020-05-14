@@ -28,6 +28,8 @@ set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 set :whenever_path, ->{ release_path }
 
+set :bundle_gemfile,  "server/Gemfile"
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
