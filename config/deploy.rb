@@ -25,7 +25,6 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 
 set :whenever_command, "bundle exec whenever"
-set :whenever_environment, defer { production }
 set :whenever_path, ->{ release_path }
 
 set :bundle_gemfile,  "server/Gemfile"
