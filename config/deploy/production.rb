@@ -59,6 +59,7 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+config.assets.js_compressor = Uglifier.new(harmony: true)
 
 set :stage, :production
 set :rails_env, :production
