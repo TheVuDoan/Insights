@@ -26,6 +26,7 @@ set :puma_preload_app, false
 
 set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
+set :whenever_path, ->{ release_path }
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
