@@ -21,7 +21,7 @@
 
 require_relative "environment"
 
-set :environment, Rails.env
+set :environment, "production"
 
 every :hour do
   rake "crawl_news_rss:run"
