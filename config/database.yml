@@ -14,7 +14,7 @@ development:
   database: Insights
   host: localhost
   username: dev
-  password: 123456
+  password: thevu62689703
   encoding: utf8
 
 # Warning: The database defined as "test" will be erased and
@@ -25,10 +25,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: 5
-  database: Insights
-  username: dev
-  password: thevu62689703
-
+  <<: *default
+  database: db/production.sqlite3
