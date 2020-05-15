@@ -26,6 +26,18 @@ set :puma_preload_app, false
 
 set :whenever_command, "bundle exec whenever"
 
+namespace :deploy do
+  desc "seed database"
+  task :seed do
+    on roles(:db) do |host|
+      within "#{release_path}" do
+        execute :rake, "db:seed"
+      end
+    end
+  end
+  after :migrate, :seed
+end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
