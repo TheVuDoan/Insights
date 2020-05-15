@@ -35,7 +35,7 @@ class CrawlEconomyNewsRss < CrawlRss
     end
 
     open(urls[1]) do |rss|
-      feed = RSS::Parser.parse(rss, false)
+      feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         if item.pubDate
           create_post(
@@ -69,7 +69,7 @@ class CrawlEconomyNewsRss < CrawlRss
     end
 
     open(urls[3]) do |rss|
-      feed = RSS::Parser.parse(rss, false)
+      feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         if item.pubDate
           create_post(
@@ -86,7 +86,7 @@ class CrawlEconomyNewsRss < CrawlRss
     end
 
     open(urls[4]) do |rss|
-      feed = RSS::Parser.parse(rss, false)
+      feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         if item.pubDate
           create_post(
