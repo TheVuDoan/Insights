@@ -25,11 +25,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8mb4
-  pool: 5
-  database: Insights
-  username: dev
-  password: thevu62689703
-  socket: /var/run/mysqld/mysqld.sock
-
+  <<: *default
+  database: db/production.sqlite3
