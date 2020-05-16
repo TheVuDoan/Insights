@@ -38,10 +38,11 @@ class CrawlEducationNewsRss < CrawlRss
       feed = RSS::Parser.parse(rss, ignore_unknown_element=false)
       feed.items.each do |item|
         if item.pubDate
+          pubDate = Rails.env == "production" ? item.pubDate.utc - 7.hours : item.pubDate
           create_post(
             item.title,
             item.description[/(?<=\<\/a\>).*/],
-            item.pubDate.utc,
+            pubDate,
             item.description[/src\=\"(.*?)\" \/\>/m, 1],
             2,
             item.link,
@@ -103,13 +104,14 @@ class CrawlEducationNewsRss < CrawlRss
     end
 
     open(urls[5]) do |rss|
-      feed = RSS::Parser.parse(rss, false)
+      feed = RSS::Parser.parse(rss, ignore_unknown_element=false)
       feed.items.each do |item|
         if item.pubDate
+          pubDate = Rails.env == "production" ? item.pubDate.utc - 7.hours : item.pubDate
           create_post(
             item.title,
             item.description[/(?<=\<\/a\>).*/],
-            item.pubDate.utc,
+            pubDate,
             item.description[/src\=\"(.*?)\" \/\>/m, 1],
             6,
             item.link,
@@ -120,7 +122,7 @@ class CrawlEducationNewsRss < CrawlRss
     end
 
     open(urls[6]) do |rss|
-      feed = RSS::Parser.parse(rss, ignore_unknown_element=false)
+      feed = RSS::Parser.parse(rss)
       feed.items.each do |item|
         if item.pubDate
           create_post(
