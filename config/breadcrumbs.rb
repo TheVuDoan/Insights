@@ -10,7 +10,7 @@ crumb :bookmarks do
   link "Tin đã lưu", bookmarks_path
 end
 
-crumb :youtube_videos do
+crumb :videos do
   link "Videos", bookmarks_path
 end
 
