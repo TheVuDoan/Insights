@@ -27,6 +27,6 @@ every :hour do
   rake "crawl_news_rss:run"
 end
 
-every 1.day, at: ['11:00 am', '5:00 pm', '11:00 pm'] do
+every 1.day, at: ['4:00 am', '10:00 am', '4:00 pm'] do
   rake "crawl_youtube_videos:run"
 end
