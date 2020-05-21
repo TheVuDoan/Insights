@@ -21,10 +21,12 @@
                 <%= raw post.description %>
               </div>
             </div>
-            <div class="mb-1 text-gray-600">
+            <div class="mb-1 text-gray-600 post-info-group">
               <img src="<%= post.source.icon %>" width="13px" height="13px">
               <span class="small">
-                <%= post.source.name %>
+                <a href="/sources/<%= post.source.slug %>/">
+                  <%= post.source.name %>
+                </a>
               </span>
               <span class="small post-info">
                 <% if (Time.now - post.publish_date) / 3600 < 1 %>
@@ -38,7 +40,9 @@
                 <% end %>
               </span>
               <span class="small post-info mr-2">
-                <%= post.category.name %>
+                <a href="/categories/<%= post.category.slug %>/">
+                  <%= post.category.name %>
+                </a>
               </span>
               <span id="card-bookmark-<%= post.id %>">
                 <%= render "bookmark", post: post %>
