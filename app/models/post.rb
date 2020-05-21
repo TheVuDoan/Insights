@@ -38,6 +38,18 @@ class Post < ApplicationRecord
     where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where('view_count > ?', 0).order('view_count DESC')
   }
 
+  def like_count
+    Like.where(post_id: id).count
+  end
+
+  def bookmark_count
+    Bookmark.where(post_id: id).count
+  end
+
+  def score
+    view_count + bookmark_count * 2 + like_count * 3
+  end
+
   def soup
     stop_word = Settings.vietnamese_stopwords
     processed_title = title.gsub(/[[:space:]]/, ' ').split(" ") - stop_word
@@ -49,28 +61,30 @@ class Post < ApplicationRecord
   class << self
     def recommend_posts(session_posts)
       return unless session_posts.present?
-      posts = Post.where('publish_date > ?', 3.hours.ago).or(where(id: session_posts))
-      n_posts = posts.count
-      corpus = []
-      posts.each do |post|
-        corpus << TfIdfSimilarity::Document.new(post.soup)
-      end
-      model = TfIdfSimilarity::TfIdfModel.new(corpus)
-      matrix = model.similarity_matrix
+      Rails.cache.fetch("recommend_posts", expires_in: 1.hours) do
+        posts = Post.where('publish_date > ?', 3.hours.ago).or(where(id: session_posts))
+        n_posts = posts.count
+        corpus = []
+        posts.each do |post|
+          corpus << TfIdfSimilarity::Document.new(post.soup)
+        end
+        model = TfIdfSimilarity::TfIdfModel.new(corpus)
+        matrix = model.similarity_matrix
 
-      visited_post_vector = Vector.zero(n_posts)
-      visited_posts = Post.where(id: session_posts)
-      n_visited_posts = visited_posts.count
-      visited_posts.each do |post|
-        visited_post_vector += matrix.row(model.text_index(post.soup))
-      end
+        visited_post_vector = Vector.zero(n_posts)
+        visited_posts = Post.where(id: session_posts)
+        n_visited_posts = visited_posts.count
+        visited_posts.each do |post|
+          visited_post_vector += matrix.row(model.text_index(post.soup))
+        end
 
-      original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.drop(n_visited_posts)
-      recommend_posts = []
-      original_indices.each do |i|
-        recommend_posts << posts[i]
+        original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.drop(n_visited_posts)
+        recommend_posts = []
+        original_indices.each do |i|
+          recommend_posts << posts[i]
+        end
+        recommend_posts
       end
-      recommend_posts
     end
   end
 end
