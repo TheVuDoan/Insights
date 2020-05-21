@@ -1,6 +1,5 @@
-<% breadcrumb :bookmarks, @bookmarked_posts %>
-
 <% if user_signed_in? %>
+  <% breadcrumb :bookmarks, @bookmarked_posts %>
   <% if @bookmarked_posts.present? %>
     <div class="row">
       <div class="col-xl-12">

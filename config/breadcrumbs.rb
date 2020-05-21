@@ -10,8 +10,12 @@ crumb :bookmarks do
   link "Tin đã lưu", bookmarks_path
 end
 
+crumb :posts do
+  link "Dành cho bạn", recommend_posts_path
+end
+
 crumb :videos do
-  link "Videos", bookmarks_path
+  link "Videos", youtube_videos_path
 end
 
 crumb :categories do

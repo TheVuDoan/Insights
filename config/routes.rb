@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get 'home/home'
   get '/404', to: 'static_pages#page_not_found'
 
-  resources :posts
+  resources :posts do
+    collection do
+      get 'recommend'
+    end
+  end
   resources :youtube_videos, path: 'videos', as: :youtube_videos, only: [:index]
   resources :categories, param: :slug
   resources :sources, param: :slug

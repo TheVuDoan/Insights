@@ -1,0 +1,13 @@
+<% breadcrumb :posts, @posts %>
+
+<div class="row">
+  <div class="col-xl-12">
+    <div class="d-sm-flex mb-2 post-header mr-3">
+      <h5 class="ml-3 mt-2 font-weight-bold">Dành cho bạn</h5>
+    </div>
+  </div>
+</div>
+
+<% if @posts.present? %>
+  <%= render "posts_list", posts: @posts %>
+<% end %>
