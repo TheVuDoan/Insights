@@ -7,18 +7,14 @@ class Post < ApplicationRecord
   has_many :bookmarks
   has_many :views
   has_many :likes
+  has_many :reports
 
   LATEST_NEWS_LIMIT = 8
   FROM_SOURCE_LIMIT = 4
   FROM_CATEGORY_LIMIT = 4
 
+  scope :active, -> { where(status: 1) }
   scope :latest, -> { includes(:source, :category).order(publish_date: :desc).limit(LATEST_NEWS_LIMIT) }
-  scope :from_source_with_limit, -> (source_id) { 
-    includes(:source, :category).where(source_id: source_id).order(publish_date: :desc).limit(FROM_SOURCE_LIMIT)
-  }
-  scope :from_category_with_limit, -> (category_id) { 
-    includes(:source, :category).where(category_id: category_id).order(publish_date: :desc).limit(FROM_CATEGORY_LIMIT)
-  }
   scope :from_source, -> (source_id) { 
     includes(:source, :category).where(source_id: source_id).order(publish_date: :desc)
   }
@@ -53,6 +49,12 @@ class Post < ApplicationRecord
   end
 
   class << self
+    def can_view_by(user_id)
+      reported_posts_id = Report.where(user_id: user_id).pluck(:post_id)
+      can_view_post = Post.where.not(id: reported_posts_id)
+      can_view_post
+    end
+
     def recommend_posts(session_posts)
       return unless session_posts.present?
       Rails.cache.fetch("recommend_posts", expires_in: 1.hours) do

@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :bookmarks
   has_many :views
   has_many :likes
+  has_many :reports
   has_many :user_view_sources
 
   before_create :set_default_info
