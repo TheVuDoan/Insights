@@ -27,7 +27,7 @@
       </div>
     </li>
 
-    <%= form_for :post, url: posts_path, method: :get, enforce_utf8: false, html: {class: 'form-inline navbar-search'} do |form| %>
+    <%= form_for :post, url: posts_path, method: :get, enforce_utf8: false, html: {class: 'form-inline navbar-search d-none d-sm-flex'} do |form| %>
       <div class="input-group">
         <%= text_field_tag :s, params[:s], class: 'form-control bg-light border-0 small', placeholder: 'Tìm kiếm...' %>
         <%= button_tag(type: "submit", class: "btn btn-primary", name: nil) do %>
