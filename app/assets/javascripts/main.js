@@ -6,6 +6,9 @@ $(document).on('turbolinks:load', function() {
   
   // Toggle the side navigation
   $("body").toggleClass("sidebar-toggled");
+  if (window.screen.width < 1000) {
+    $(".sidebar").toggleClass("toggled");
+  }
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");

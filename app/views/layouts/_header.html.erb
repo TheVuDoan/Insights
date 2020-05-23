@@ -49,7 +49,7 @@
             <i class="fas fa-fw fa-bookmark fa-sm mr-2 text-gray-400"></i>
             Tin đã lưu
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="/posts/recommend/">
             <i class="fas fa-fw fa-user fa-sm mr-2 text-gray-400"></i>
             Dành cho bạn
           </a>
@@ -58,15 +58,29 @@
         </div>
       </li>
     <% else %>
-      <li class="nav-item dropdown no-arrow">
+      <li class="nav-item dropdown no-arrow d-none">
         <a class="nav-link" href="/users/sign_in/">
           <span class="mr-2 d-none d-lg-inline text-gray-600 small">Đăng nhập</span>
         </a>
       </li>
-      <li class="nav-item dropdown no-arrow">
+      <li class="nav-item dropdown no-arrow d-none">
         <a class="nav-link" href="/users/sign_up/">
           <button type="button" class="btn btn-primary mr-2 d-none d-lg-inline small">Đăng kí</button>
         </a>
+      </li>
+      <li class="nav-item dropdown no-arrow d-lg-none">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="img-profile rounded-circle" src="/images/default_user2.jpg">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="/users/sign_in/">
+            <span class="mr-2 text-gray-600 small">Đăng nhập</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/users/sign_up/">
+            <span class="mr-2 text-gray-600 small">Đăng kí</span>
+          </a>
+        </div>
       </li>
     <% end %>
   </ul>
