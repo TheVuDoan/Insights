@@ -6,9 +6,6 @@ $(document).on('turbolinks:load', function() {
   
   // Toggle the side navigation
   $("body").toggleClass("sidebar-toggled");
-  if (window.screen.width < 1000) {
-    $(".sidebar").toggleClass("toggled");
-  }
   $("#sidebarToggle, #sidebarToggleTop").on('click', function(e) {
     $("body").toggleClass("sidebar-toggled");
     $(".sidebar").toggleClass("toggled");
@@ -16,6 +13,10 @@ $(document).on('turbolinks:load', function() {
       $('.sidebar .collapse').collapse('hide');
     };
   });
+
+  if ($(window).width() < 768) {
+    $(".sidebar").toggleClass("toggled");
+  }
 
   // Close any open menu accordions when window is resized below 768px
   $(window).resize(function() {

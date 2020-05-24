@@ -25,19 +25,14 @@
   <body>
     <div id="wrapper">
       <%= render 'layouts/header' %>
+      <%= render 'layouts/sidebar' %>
       <div id="content-wrapper" class="d-flex flex-column">
-        <div class="row">
-          <div class="col-lg-2 d-none d-lg-inline">
-            <%= render 'layouts/sidebar' %>
+        <div id="content">
+          <div class="container-fluid mt-3">
+            <%= breadcrumbs separator: ' &rsaquo; ' %>
+            <%= yield %>
           </div>
-          <div class="col-lg-10 col-12">
-            <div id="content">
-              <div class="container-fluid mt-3">
-                <%= breadcrumbs separator: ' &rsaquo; ' %>
-                <%= yield %>
-              </div>
-            </div>
-          </div>
+        </div>
       </div>
     </div>
   </body>
