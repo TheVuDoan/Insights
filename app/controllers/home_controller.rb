@@ -1,10 +1,11 @@
 class HomeController < ApplicationController
   FROM_SOURCE_LIMIT = 4
-  FROM_CATEGORY_LIMIT = 4
+  FROM_CATEGORY_LIMIT = 3
   def home
     set_post_data
     set_recommend_post_data
     set_most_visited_data
+    set_most_viewed_data
     set_video_data
   end
 
@@ -19,7 +20,15 @@ class HomeController < ApplicationController
   end
 
   def set_recommend_post_data
-    @recommend_posts = Post.active.recommend_posts(session[:recent_posts])&.first(6)
+    if user_signed_in?
+      @recommend_posts = Post.active.recommend_posts_for_user(current_user.id)&.first(6)
+    else
+      @recommend_posts = Post.active.recommend_posts(session[:recent_posts])&.first(6)
+    end
+  end
+
+  def set_most_viewed_data
+    @most_viewed_daily = Post.active.most_viewed_daily.first(4)
   end
 
   def set_most_visited_data

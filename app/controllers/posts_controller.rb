@@ -9,6 +9,10 @@ class PostsController < ApplicationController
   end
 
   def recommend
-    @posts = Post.recommend_posts(session[:recent_posts])
+    if user_signed_in?
+      @posts = Kaminari.paginate_array(Post.recommend_posts_for_user(current_user.id)).page(params[:page]).per(20)
+    else
+      @posts = Kaminari.paginate_array(Post.recommend_posts(session[:recent_posts])).page(params[:page]).per(20)
+    end
   end
 end

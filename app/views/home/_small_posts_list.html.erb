@@ -1,17 +1,28 @@
-<div class="row mb-2">
+<div class="row">
   <% posts.each do |post| %>
     <div class="col-xl-12">
       <div class="h-100">
         <div class="card-body pl-0 pb-0">
-          <div class="no-gutters mb-1">
-            <div class="mb-1">
+          <div class="row no-gutters mb-1">
+            <div class="col-xl-12">
               <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
                 <div class="font-weight-bold text-gray-900">
                   <%= raw post.title %>
                 </div>
               </a>
             </div>
+            <div class="mb-1">
+              <% if post.image.present? %> 
+                <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
+                  <img src="<%= post.image %>" alt="<%= post.title %>" class="post-img mt-1 mr-2 border-0">
+                </a>
+              <% end %>
+              <div class="card-body-description">
+                <%= raw post.description %>
+              </div>
+            </div>
             <div class="mb-1 text-gray-600 post-info-group">
+              <img src="<%= post.source.icon %>" width="13px" height="13px">
               <span class="small">
                 <a href="/sources/<%= post.source.slug %>/">
                   <%= post.source.name %>

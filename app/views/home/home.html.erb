@@ -8,16 +8,28 @@
 
 <%= render "posts_list", posts: @posts %>
 
+<div class="row mb-4">
+  <a href="/posts/" class="ml-auto mr-3 small">
+    <i>Xem tất cả tin &rarr; </i>
+  </a>
+</div>
+
 <% if @recommend_posts %>
   <div class="row">
     <div class="col-xl-12">
       <div class="d-sm-flex mb-2 post-header mr-3">
-        <h5 class="ml-3 mt-2 font-weight-bold">Dựa trên tin bạn đã xem</h5>
+        <h5 class="ml-3 mt-2 font-weight-bold">Dựa Trên Tin Đã Xem</h5>
       </div>
     </div>
   </div>
 
   <%= render "posts_list", posts: @recommend_posts %>
+
+  <div class="row mb-4">
+    <a href="/posts/recommend/" class="ml-auto mr-3 small">
+      <i>Xem tất cả tin &rarr; </i>
+    </a>
+  </div>
 <% end %>
 
 <div class="row">
@@ -29,6 +41,12 @@
 </div>
 
 <%= render "videos_list", videos: @videos %>
+
+<div class="row mb-4">
+  <a href="/videos/" class="ml-auto mr-3 small">
+    <i>Xem tất cả video &rarr; </i>
+  </a>
+</div>
 
 <% if @most_visited_category.present? && @most_visited_source.present? %>
   <div class="row">
@@ -43,7 +61,13 @@
         </div>
       </div>
 
-      <%= render "posts_list", posts: @most_visited_category_posts %>
+      <%= render "small_posts_list", posts: @most_visited_category_posts %>
+
+      <div class="row mb-4">
+        <a href="/categories/<%= @most_visited_category.slug %>/" class="ml-auto mr-3 small">
+          <i>Xem tất cả tin &rarr; </i>
+        </a>
+      </div>
     </div>
 
     <div class="col-xl-4">
@@ -59,5 +83,29 @@
       </div>
 
       <%= render "side_posts_list", posts: @most_visited_source_posts %>
+
+      <div class="row mb-4">
+        <a href="/sources/<%= @most_visited_source.slug %>/" class="ml-auto mr-3 small">
+          <i>Xem tất cả tin &rarr; </i>
+        </a>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="d-sm-flex mb-2 post-header mr-3">
+            <h5 class="ml-3 mt-2 font-weight-bold">
+              Xem Nhiều Trong Ngày
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <%= render "side_posts_list", posts: @most_viewed_daily %>
+
+      <div class="row mb-4">
+        <a href="/posts/" class="ml-auto mr-3 small">
+          <i>Xem tất cả tin &rarr; </i>
+        </a>
+      </div>
     </div>
 <% end %>

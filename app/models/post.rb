@@ -82,5 +82,56 @@ class Post < ApplicationRecord
         recommend_posts
       end
     end
+
+    def recommend_posts_for_user (user_id)
+      Rails.cache.fetch("recommend_posts_for_user", expires_in: 1.hours) do
+        # Get history
+        liked_posts_id = Like.where(user_id: user_id).pluck(:post_id)
+        bookmarked_posts_id = Bookmark.where(user_id: user_id, status: 1).pluck(:post_id)
+        unbookmarked_posts_id = Bookmark.where(user_id: user_id, status: 0).pluck(:post_id)
+        viewed_posts_id = View.where(user_id: user_id).pluck(:post_id)
+        interacted_posts_id = viewed_posts_id.append(liked_posts_id).append(bookmarked_posts_id).append(unbookmarked_posts_id).flatten.uniq
+        n_interacted_posts = interacted_posts_id.count
+        
+        # Apply model
+        posts = Post.where('publish_date > ?', 3.hours.ago).or(where(id: interacted_posts_id))
+        n_posts = posts.count
+        corpus = []
+        posts.each do |post|
+          corpus << TfIdfSimilarity::Document.new(post.soup)
+        end
+        model = TfIdfSimilarity::TfIdfModel.new(corpus)
+        matrix = model.similarity_matrix
+
+        # Caluculate score
+        visited_post_vector = Vector.zero(n_posts)
+        liked_posts = Post.where(id: liked_posts_id)
+        liked_posts.each do |post|
+          visited_post_vector += matrix.row(model.text_index(post.soup)) * 5
+        end
+
+        bookmarked_posts = Post.where(id: bookmarked_posts_id)
+        bookmarked_posts.each do |post|
+          visited_post_vector += matrix.row(model.text_index(post.soup)) * 3
+        end
+
+        unbookmarked_posts = Post.where(id: unbookmarked_posts_id)
+        unbookmarked_posts.each do |post|
+          visited_post_vector += matrix.row(model.text_index(post.soup)) * 2
+        end
+
+        viewed_posts = Post.where(id: viewed_posts_id)
+        viewed_posts.each do |post|
+          visited_post_vector += matrix.row(model.text_index(post.soup))
+        end
+        
+        original_indices = visited_post_vector.to_a.map.with_index.sort.map(&:last).reverse.drop(n_interacted_posts)
+        recommend_posts = []
+        original_indices.each do |i|
+          recommend_posts << posts[i]
+        end
+        recommend_posts
+      end
+    end
   end
 end
