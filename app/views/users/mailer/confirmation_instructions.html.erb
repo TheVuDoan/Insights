@@ -1,5 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<p>Chào mừng <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>Cảm ơn bạn đã chọn sử dụng hệ thống tổng hợp tin tức Insights!</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>Xác thực email của bạn thông qua đường link sau:</p>
+
+<p><%= link_to 'Xác thực tài khoản', confirmation_url(@resource, confirmation_token: @token) %></p>

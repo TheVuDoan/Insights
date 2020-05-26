@@ -30,10 +30,10 @@
                   <hr>
                 <% end %>
                 <div class="text-center">
-                  <a class="small" href="forgot-password.html">Quên mật khẩu</a>
+                  <%= link_to("Quên mật khẩu?", new_user_password_path, id:"forget-password", class:"forget-password small") %>
                 </div>
                 <div class="text-center">
-                  <a class="small" href="/users/sign_in/">Đăng nhập</a>
+                  <a class="small" href="/users/sign_in/">Đã có tài khoản? Đăng nhập ngay!</a>
                 </div>
               </div>
             </div>

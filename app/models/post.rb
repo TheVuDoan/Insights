@@ -25,7 +25,7 @@ class Post < ApplicationRecord
     joins(:bookmarks).where('bookmarks.user_id = ?', user_id).order(publish_date: :desc)
   }
   scope :most_viewed_daily, -> () {
-    where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where('view_count > ?', 0).order('view_count DESC')
+    where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order('view_count DESC')
   }
 
   def like_count
