@@ -3,6 +3,15 @@ $(document).on('turbolinks:load', function() {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   })
+
+  $("#showPassword").on('click', function() {
+    const x = document.getElementById("user_password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  })
   
   // Toggle the side navigation
   $("body").toggleClass("sidebar-toggled");
