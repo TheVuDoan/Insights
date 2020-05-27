@@ -11,6 +11,13 @@ $(document).on('turbolinks:load', function() {
     } else {
       x.type = "password";
     }
+    const y = document.getElementById("user_password_confirmation");
+    if (y)
+      if (y.type === "password") {
+        y.type = "text";
+      } else {
+        y.type = "password";
+      }
   })
   
   // Toggle the side navigation

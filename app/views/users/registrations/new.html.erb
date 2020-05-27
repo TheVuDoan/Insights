@@ -20,15 +20,20 @@
                       <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-user", placeholder: "Mật khẩu" %>
                       <% if @minimum_password_length %>
                         <small class="form-text text-muted">(Tối thiểu <%= @minimum_password_length %> kí tự)</small>
-                      <% end %><br />
+                      <% end %>
                     </div>
                     <div class="col-sm-6">
                       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-user", placeholder: "Nhập lại mật khẩu" %>
                     </div>
                   </div>
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox small">
+                      <input class="custom-control-input" type="checkbox" id="showPassword">
+                      <label class="custom-control-label" for="showPassword">Hiển thị mật khẩu</label>
+                    </div>
+                  </div>
                   <%= f.submit "Đăng kí", class: 'btn btn-primary btn-user btn-block' %>
                   <hr>
-                  <%= link_to(raw("<i class='fab fa-google fa-fw'></i> Đăng nhập với Google"), user_google_oauth2_omniauth_authorize_path, {:class => 'btn btn-google btn-user btn-block'}) %>
                 <% end %>
                 <div class="text-center">
                   <%= link_to("Quên mật khẩu?", new_user_password_path, id:"forget-password", class:"forget-password small") %>
