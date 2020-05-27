@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Users::SessionsController < Devise::SessionsController
+class Admins::SessionsController < Devise::SessionsController
+  # before_action :configure_sign_in_params, only: [:create]
   include Accessible
   skip_before_action :check_user, only: :destroy
-  # before_action :configure_sign_in_params, only: [:create]
   layout "simple_layout"
 
   # GET /resource/sign_in

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-class Users::RegistrationsController < Devise::RegistrationsController
+class Admins::RegistrationsController < Devise::RegistrationsController
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
   include Accessible
   skip_before_action :check_user, except: [:new, :create]
   layout "simple_layout"
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -14,24 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   # def create
-  #   build_resource
-
-  #   if resource.save
-  #     if resource.active_for_authentication?     
-  #       set_flash_message :notice, :signed_up if is_navigational_format?
-  #       sign_in(resource_name, resource)
-  #       respond_with resource, :location => redirect_location(resource_name, resource)
-  #     else
-  #       set_flash_message :notice, :inactive_signed_up, :reason => resource.inactive_message.to_s if is_navigational_format?
-  #       expire_session_data_after_sign_in!
-  #       respond_with resource, :location => after_inactive_sign_up_path_for(resource)
-  #     end
-  #   else
-  #     debugger
-  #     clean_up_passwords(resource)
-  #     flash[:notice] = flash[:notice].to_a.concat resource.errors.full_messages
-  #     redirect_to '/users/sign_up/'
-  #   end
+  #   super
   # end
 
   # GET /resource/edit
