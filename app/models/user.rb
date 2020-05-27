@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable , omniauth_providers: [:facebook]
+         :omniauthable , omniauth_providers: [:facebook, :google_oauth2]
   
   has_many :bookmarks
   has_many :views
@@ -28,7 +28,7 @@ class User < ApplicationRecord
           user.provider = auth.provider
   
           #  If you are using confirmable and the provider(s) you use validate emails
-          # user.skip_confirmation!
+          user.skip_confirmation!
         end
       end
     end

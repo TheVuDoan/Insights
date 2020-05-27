@@ -28,6 +28,7 @@
                   </div>
                   <%= f.submit "Đăng kí", class: 'btn btn-primary btn-user btn-block' %>
                   <hr>
+                  <%= link_to(raw("<i class='fab fa-google fa-fw'></i> Đăng nhập với Google"), user_google_oauth2_omniauth_authorize_path, {:class => 'btn btn-google btn-user btn-block'}) %>
                 <% end %>
                 <div class="text-center">
                   <%= link_to("Quên mật khẩu?", new_user_password_path, id:"forget-password", class:"forget-password small") %>
