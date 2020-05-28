@@ -1,7 +1,7 @@
 module Admins
   class DashboardController < BaseController
     def index
-      @hi = "hi"
+      @num_of_user = User.count
     end
 
     private
