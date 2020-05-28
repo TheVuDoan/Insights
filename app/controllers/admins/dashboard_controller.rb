@@ -1,6 +1,5 @@
 module Admins
-  class DashboardController < ApplicationController
-    layout "simple_layout"
+  class DashboardController < BaseController
     def index
       @hi = "hi"
     end
