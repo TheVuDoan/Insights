@@ -25,7 +25,15 @@
           <td><%= truncate_description(post.description) %></td>
           <td><%= post.publish_date %></td>
           <td><%= post.status ? 'Bình thường' : 'Khóa' %></td>
-          <td></td>
+          <td width="120px">
+            <% if post.status %>
+              <%= link_to 'Khóa', toggle_admins_post_path(post), method: :put, class: "btn btn-success btn-sm mb-2 small" %>
+            <% else %>
+              <%= link_to 'Mở Khóa', toggle_admins_post_path(post), method: :put, class: "btn btn-success btn-sm mb-2 small" %>
+            <% end %>
+            <%= link_to 'Chi tiết', admins_post_path(post), class: "btn btn-primary btn-sm mb-2 small" %>
+            <%= link_to 'Xóa', admins_post_path(post), method: :delete, class: "btn btn-danger btn-sm mb-2 small" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
