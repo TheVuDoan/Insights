@@ -1,5 +1,5 @@
 module ApplicationHelper
-  include PostsHelper
+  include Admins::PostsHelper
   include DeviseHelper
 
   def active_class(controller_name, action_name)
