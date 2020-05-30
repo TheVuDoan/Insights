@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root "dashboard#index"
     resources :youtube_videos
+    resources :users
     resources :posts do
       member do
         put :toggle

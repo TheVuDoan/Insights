@@ -13,6 +13,22 @@ class User < ApplicationRecord
 
   before_create :set_default_info
 
+  def view_count
+    Like.where(user_id: id).count
+  end
+
+  def like_count
+    Like.where(user_id: id).count
+  end
+
+  def bookmark_count
+    Bookmark.where(user_id: id).count
+  end
+
+  def report_count
+    Report.where(user_id: id).count
+  end
+
   class << self
     def from_omniauth(auth)
       result = User.where(email: auth.info.email).first
