@@ -7,6 +7,13 @@ module Admins
       @categories = Category.all
     end
 
+    def reported
+      @reported_posts = Post.joins(reports: :report_reason)
+                            .select('posts.id', :title, :status, 'report_reasons.description')
+                            .order(id: :desc)
+                            .page(params[:page]).per(20)
+    end
+
     def show
       @post = Post.includes(:category, :source).find(params[:id])
     end

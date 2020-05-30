@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       member do
         put :toggle
       end
+      collection do
+        get :reported
+      end
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
