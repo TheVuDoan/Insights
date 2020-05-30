@@ -1,1 +1,91 @@
-<h2>hi</h2>
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td class="font-weight-bold"><h5>Thông tin chung</h5></td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold" width="200px">ID</td>
+      <td>
+        <%= @post.id %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Thumbnail</td>
+      <td>
+        <% if @post.image.present? %>
+          <img src="<%= @post.image %>" class="mb-2 post-image">
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Nguồn tin</td>
+      <td>
+        <%= @post.source.name %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Danh mục</td>
+      <td>
+        <%= @post.category.name %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Title</td>
+      <td>
+        <%= @post.title %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Description</td>
+      <td>
+        <%= @post.description %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">URL</td>
+      <td>
+        <a href="<%= @post.url %>"><%= @post.url %></a>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Ngày phát hành</td>
+      <td>
+        <%= @post.publish_date %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Trạng thái</td>
+      <td>
+        <%= @post.status ? "Bình thường" : "Khóa" %>
+      </td>
+    </tr>
+    <tr style="border-top: 1px solid">
+      <td class="font-weight-bold"><h5>Thống kê chi tiết</h5></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Lượt xem</td>
+      <td>
+        <%= @post.view_count %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Lượt thích</td>
+      <td>
+        <%= @post.like_count %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Lượt lưu tin tức</td>
+      <td>
+        <%= @post.like_count %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Lượt báo cáo</td>
+      <td>
+        <%= @post.report_count %>
+      </td>
+    </tr>
+  </tbody>
+<table>

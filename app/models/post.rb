@@ -36,6 +36,10 @@ class Post < ApplicationRecord
     Bookmark.where(post_id: id).count
   end
 
+  def report_count
+    Report.where(post_id: id).count
+  end
+
   def score
     view_count + bookmark_count * 2 + like_count * 3
   end

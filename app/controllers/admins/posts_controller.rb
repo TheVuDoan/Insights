@@ -8,7 +8,7 @@ module Admins
     end
 
     def show
-      @post = Post.find(params[:id])
+      @post = Post.includes(:category, :source).find(params[:id])
     end
 
     def destroy   
