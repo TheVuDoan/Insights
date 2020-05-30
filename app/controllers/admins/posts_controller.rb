@@ -1,7 +1,10 @@
 module Admins
   class PostsController < BaseController  
-    def index   
-      @posts = Post.includes(:category, :source).all.order(id: :desc).page(params[:page]).per(20)
+    def index
+      @q = Post.ransack(params[:q])
+      @posts = @q.result.includes(:category, :source).order(id: :desc).page(params[:page]).per(20)
+      @sources = Source.all
+      @categories = Category.all
     end
 
     def show
@@ -29,6 +32,12 @@ module Admins
         format.html { redirect_back(fallback_location: admins_posts_path) }
         format.json { head :no_content }
       end
+    end
+
+    private
+
+    def post_params
+      params.require(:q).permit(:title, :description, :publish_date, :status, :source_id, :category_id)
     end
   end
 end
