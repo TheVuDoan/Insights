@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, path: 'admins', controllers: {
-    sessions: 'admins/sessions'
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
   }
   devise_for :users, path: 'users', controllers: {
     sessions: 'users/sessions',
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :youtube_videos
     resources :users
+    resources :admins
     resources :posts do
       member do
         put :toggle

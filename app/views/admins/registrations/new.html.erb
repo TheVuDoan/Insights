@@ -1,32 +1,36 @@
-<h2>Sign up</h2>
+<h2>Thêm quản trị viên</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Họ tên</label>
+    <%= f.text_field :fullname, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Mật khẩu</label>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+      <small id="emailHelp" class="form-text text-muted">Ít nhất <%= @minimum_password_length %> kí tự</small>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Xác nhận Mật khẩu</label>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label for="status_eq">Vai trò</label>
+    <%= f.select :role_id, options_for_select([
+      ["System Operator", 1],
+      ["Data Analyst", 2],
+      ["Editor", 3],
+    ]), {:include_blank => "Chọn..."}, {class: "form-control"} %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <%= f.hidden_field :role_id, :value => 1 %>
-  <%= f.hidden_field :fullname, :value => "Insights Admin" %>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+  <%= f.submit "Thêm", class: "btn btn-primary" %>
 <% end %>
 
-<%= render "admins/shared/links" %>
