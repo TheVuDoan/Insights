@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<%= render "posts_list", posts: @posts %>
+<%= render "posts_list", posts: @posts, is_recommend: 0 %>
 
 <div class="row mb-4">
   <a href="/posts/" class="ml-auto mr-3 small">
@@ -44,7 +44,7 @@
     </div>
   </div>
 
-  <%= render "posts_list", posts: @recommend_posts %>
+  <%= render "posts_list", posts: @recommend_posts, is_recommend: 1 %>
 
   <div class="row mb-4">
     <a href="/posts/recommend/" class="ml-auto mr-3 small">

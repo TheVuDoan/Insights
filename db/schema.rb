@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_083414) do
+ActiveRecord::Schema.define(version: 2020_06_01_135332) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_05_27_083414) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.integer "count", default: 1, null: false
+    t.integer "recommend_view_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_views_on_post_id"

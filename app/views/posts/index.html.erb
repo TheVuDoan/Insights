@@ -16,7 +16,7 @@
 </div>
 
 <% if @posts.present? %>
-  <%= render "posts_list", posts: @posts %>
+  <%= render "posts_list", posts: @posts, is_recommend: 0 %>
 <% else %>
   <%= render "static_pages/page_not_found" %>
 <% end %>

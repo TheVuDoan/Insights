@@ -5,7 +5,7 @@
         <div class="card-body pl-0">
           <div class="row no-gutters mb-1">
             <div class="col-xl-12">
-              <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
+              <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %> data-is_recommend=<%= is_recommend %>>
                 <div class="font-weight-bold text-gray-900">
                   <%= raw post.title %>
                 </div>
@@ -13,7 +13,7 @@
             </div>
             <div class="mb-1">
               <% if post.image.present? %> 
-                <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
+                <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %> data-is_recommend=<%= is_recommend %>>
                   <img src="<%= post.image %>" alt="<%= post.title %>" class="post-img mt-1 mr-2 border-0">
                 </a>
               <% end %>

@@ -23,9 +23,16 @@ class ViewsController < ApplicationController
     if user_signed_in?
       view = View.where(post_id: post_id, user_id: current_user.id).first
       if view.nil?
-        view = View.create(post_id: post_id, user_id: current_user.id, count: 1)
+        if (params[:is_recommend] == "1")
+          view = View.create(post_id: post_id, user_id: current_user.id, count: 1, recommend_view_count: 1)
+        else
+          view = View.create(post_id: post_id, user_id: current_user.id, count: 1)
+        end
       else
         view.count = view.count + 1
+        if (params[:is_recommend] == "1")
+          view.recommend_view_count = view.recommend_view_count + 1
+        end
         view.save
       end
 

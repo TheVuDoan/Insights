@@ -9,5 +9,5 @@
 </div>
 
 <% if @posts.present? %>
-  <%= render "posts_list", posts: @posts %>
+  <%= render "posts_list", posts: @posts, is_recommend: 1 %>
 <% end %>
