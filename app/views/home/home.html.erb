@@ -17,7 +17,7 @@
 
 <div class="row">
   <div class="col-xl-12">
-    <div class="d-sm-flex mb-2 post-header mr-3">
+    <div class="d-sm-flex mb-2 post-header">
       <h5 class="ml-3 mt-2 font-weight-bold">Tin Mới Nhất</h5>
     </div>
   </div>
@@ -34,8 +34,12 @@
 <% if @recommend_posts %>
   <div class="row">
     <div class="col-xl-12">
-      <div class="d-sm-flex mb-2 post-header mr-3">
-        <h5 class="ml-3 mt-2 font-weight-bold">Dựa Trên Tin Đã Xem</h5>
+      <div class="d-sm-flex mb-2 post-header">
+        <% if user_signed_in? || session[:recent_posts].present? %>
+          <h5 class="ml-3 mt-2 font-weight-bold">Dựa Trên Tin Đã Xem</h5>
+        <% else %>
+          <h5 class="ml-3 mt-2 font-weight-bold">Bạn Có Thể Thích</h5>
+        <% end %>
       </div>
     </div>
   </div>
@@ -51,7 +55,7 @@
 
 <div class="row">
   <div class="col-xl-12">
-    <div class="d-sm-flex mb-2 post-header mr-3">
+    <div class="d-sm-flex mb-2 post-header">
       <h5 class="ml-3 mt-2 font-weight-bold">Videos</h5>
     </div>
   </div>
@@ -85,12 +89,30 @@
           <i>Xem tất cả tin &rarr; </i>
         </a>
       </div>
+
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="d-sm-flex mb-2 post-header mr-2">
+            <h5 class="ml-3 mt-2 font-weight-bold">
+              Xem Nhiều Trong Ngày
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <%= render "small_posts_list", posts: @most_interested_daily %>
+
+      <div class="row mb-4">
+        <a href="/posts/" class="ml-auto mr-3 small">
+          <i>Xem tất cả tin &rarr; </i>
+        </a>
+      </div>
     </div>
 
     <div class="col-xl-4">
       <div class="row">
         <div class="col-xl-12">
-          <div class="d-sm-flex mb-2 post-header mr-3">
+          <div class="d-sm-flex mb-2 post-header">
             <h5 class="ml-3 mt-2 font-weight-bold">
               <img class="post-header-logo" src="<%= @most_visited_source.icon %>"/>
               <%= @most_visited_source.name %>
@@ -109,20 +131,28 @@
 
       <div class="row">
         <div class="col-xl-12">
-          <div class="d-sm-flex mb-2 post-header mr-3">
+          <div class="d-sm-flex mb-2 post-header">
             <h5 class="ml-3 mt-2 font-weight-bold">
-              Xem Nhiều Trong Ngày
+              Đã Xem Gần Đây
             </h5>
           </div>
         </div>
       </div>
 
-      <%= render "side_posts_list", posts: @most_viewed_daily %>
+      <% if @recently_visited.present? %>
+        <%= render "side_posts_list", posts: @recently_visited %>
 
-      <div class="row mb-4">
-        <a href="/posts/" class="ml-auto mr-3 small">
-          <i>Xem tất cả tin &rarr; </i>
-        </a>
-      </div>
+        <div class="row mb-4">
+          <a href="/posts/" class="ml-auto mr-3 small">
+            <i>Xem tất cả tin &rarr; </i>
+          </a>
+        </div>
+      <% else %>
+        <div class="bookmark-wrapper">
+          Bạn chưa xem tin nào ngày hôm nay.
+          <br/><br/>
+          <a href="/posts/">Xem danh sách tin &rarr; </a>
+        </div>
+      <% end %>
     </div>
 <% end %>

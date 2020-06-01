@@ -27,6 +27,12 @@ class Post < ApplicationRecord
   scope :most_viewed_daily, -> () {
     where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order('view_count DESC')
   }
+  scope :most_interested_daily, -> () {
+    where(publish_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).sort_by(&:score).reverse
+  }
+  scope :from_session, -> (session_posts_id) {
+    where(id: session_posts_id)
+  }
 
   def like_count
     Like.where(post_id: id).count
@@ -41,7 +47,7 @@ class Post < ApplicationRecord
   end
 
   def score
-    view_count + bookmark_count * 2 + like_count * 3
+    view_count + bookmark_count * 2 + like_count * 3 - report_count * 5
   end
 
   def soup
@@ -49,7 +55,7 @@ class Post < ApplicationRecord
     processed_title = title.gsub(/[[:space:]]/, ' ').split(" ") - stop_word
     processed_description = description.gsub(/[[:space:]]/, ' ').split(" ") - stop_word
     soup = processed_title.concat processed_description
-    soup.uniq.join(" ")
+    soup.join(" ")
   end
 
   class << self
@@ -57,6 +63,12 @@ class Post < ApplicationRecord
       reported_posts_id = Report.where(user_id: user_id).pluck(:post_id)
       can_view_post = Post.where.not(id: reported_posts_id)
       can_view_post
+    end
+
+    def recently_visited(user_id)
+      recently_visited_id = View.where(user_id: user_id).pluck(:post_id)
+      recently_visited_post = Post.where(id: recently_visited_id).order(id: :desc)
+      recently_visited_post
     end
 
     def recommend_posts(session_posts)

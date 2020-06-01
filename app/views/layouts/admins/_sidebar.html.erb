@@ -5,43 +5,46 @@
       <span>Dashboard</span></a>
   </li>
 
-  <hr class="sidebar-divider">
+  <% if current_admin.sysop? %>
+    <hr class="sidebar-divider">
 
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-      <i class="fas fa-fw fa-users"></i>
-      <span>Quản lí người dùng</span>
-    </a>
-    <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item mb-1" href="/admins/users/">Quản lí người dùng</a>
-        <a class="collapse-item mb-1" href="/admins/admins/">Quản lí admin</a>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
+        <i class="fas fa-fw fa-users"></i>
+        <span>Quản lí người dùng</span>
+      </a>
+      <div id="collapseUsers" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item mb-1" href="/admins/users/">Quản lí người dùng</a>
+          <a class="collapse-item mb-1" href="/admins/admins/">Quản lí admin</a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
+  <% end %>
 
-  <hr class="sidebar-divider">
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePosts" aria-expanded="true" aria-controls="collapsePosts">
-      <i class="fas fa-fw fa-newspaper"></i>
-      <span>Quản lí tin tức</span>
-    </a>
-    <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item mb-1" href="/admins/posts/">Tất cả tin tức</a>
-        <a class="collapse-item mb-1" href="/admins/posts/reported/">Tin tức bị báo cáo</a>
+  <% if current_admin.sysop? || current_admin.editor? %>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePosts" aria-expanded="true" aria-controls="collapsePosts">
+        <i class="fas fa-fw fa-newspaper"></i>
+        <span>Quản lí tin tức</span>
+      </a>
+      <div id="collapsePosts" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item mb-1" href="/admins/posts/">Tất cả tin tức</a>
+          <a class="collapse-item mb-1" href="/admins/posts/reported/">Tin tức bị báo cáo</a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
 
-  <hr class="sidebar-divider">
+    <hr class="sidebar-divider">
 
-  <li class="nav-item">
-    <a class="nav-link" href="/admins/youtube_videos/">
-      <i class="fas fa-fw fa-video"></i>
-      <span>Quản lí video</span></a>
-  </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admins/youtube_videos/">
+        <i class="fas fa-fw fa-video"></i>
+        <span>Quản lí video</span></a>
+    </li>
+  <% end %>
 
   <hr class="sidebar-divider d-none d-md-block">
 </ul>

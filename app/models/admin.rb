@@ -5,4 +5,16 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :role
+
+  def sysop?
+    role.slug == 'sysop'
+  end
+
+  def analyst?
+    role.slug == 'analyst'
+  end
+
+  def editor?
+    role.slug == 'editor'
+  end
 end

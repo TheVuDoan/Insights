@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
   FROM_SOURCE_LIMIT = 4
   FROM_CATEGORY_LIMIT = 3
+  RECOMMEND_LIMIT = 6
   def home
     set_post_data
     set_recommend_post_data
     set_most_visited_data
-    set_most_viewed_data
+    set_most_interested_data
+    set_recently_visited_data
     set_video_data
   end
 
@@ -21,14 +23,24 @@ class HomeController < ApplicationController
 
   def set_recommend_post_data
     if user_signed_in?
-      @recommend_posts = Post.active.recommend_posts_for_user(current_user.id)&.first(6)
-    else
-      @recommend_posts = Post.active.recommend_posts(session[:recent_posts])&.first(6)
+      @recommend_posts = Post.active.recommend_posts_for_user(current_user.id)&.first(RECOMMEND_LIMIT)
+    elsif session[:recent_posts].present?
+      @recommend_posts = Post.active.recommend_posts(session[:recent_posts])&.first(RECOMMEND_LIMIT)
+    else 
+      @recommend_posts = Post.active.most_viewed_daily.first(RECOMMEND_LIMIT)
     end
   end
 
-  def set_most_viewed_data
-    @most_viewed_daily = Post.active.most_viewed_daily.first(4)
+  def set_most_interested_data
+    @most_interested_daily = Post.active.most_interested_daily.first(3)
+  end
+
+  def set_recently_visited_data
+    if user_signed_in?
+      @recently_visited = Post.active.recently_visited(current_user.id)&.first(4)
+    else
+      @recently_visited = Post.active.from_session(session[:recent_posts])&.first(4)
+    end
   end
 
   def set_most_visited_data
