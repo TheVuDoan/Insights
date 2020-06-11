@@ -14,7 +14,7 @@
             <div class="mb-1">
               <% if post.image.present? %> 
                 <a href="<%= post.url %>" target="_blank" class="card-view-url" data-post_id=<%= post.id %>>
-                  <img src="<%= post.image %>" alt="<%= post.title %>" class="post-img mt-1 mr-2 border-0">
+                  <img src="<%= post.image %>" alt="<%= post.title %>" class="post-img mt-1 mr-2 border-0 post-img-small">
                 </a>
               <% end %>
               <div class="card-body-description">

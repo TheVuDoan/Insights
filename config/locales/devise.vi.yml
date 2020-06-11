@@ -62,8 +62,10 @@ vi:
           attributes:
             email:
               taken: 'Email đã được đăng kí! Vui lòng chọn email khác.'
+              blank: 'Email không được để trống! Vui lòng nhập email.'
             password:
               too_short: 'Mật khẩu quá ngắn. Mật khẩu tối thiểu 6 kí tự.'
+              blank: 'Mật khẩu không được để trống! Vui lòng nhập mật khẩu.'
             password_confirmation:
               confirmation: 'Mật khẩu không trùng khớp.'
     attributes:
