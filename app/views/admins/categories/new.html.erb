@@ -1,0 +1,30 @@
+<%= form_for @category, url: {action: :create} do |f| %>   
+  <div>   
+    <h3>Thêm Danh mục</h3>   
+  </div>   
+  <div>   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="category_name">Tên</label>
+        <%= f.text_field "name", class: "form-control", placeholder: 'Nhập tên' %>
+      </div>
+    </div>  
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="category_slug">Slug</label>
+        <%= f.text_field "slug", class: "form-control", placeholder: 'Nhập slug' %>
+      </div>
+    </div>  
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="category_label_type">Label Type</label>
+        <%= f.text_field "label_type", class: "form-control", placeholder: 'Nhập Label Type' %>
+      </div>
+    </div>
+  </div>   
+  <div>   
+    <%= f.submit 'Tạo danh mục', class: "btn btn-primary" %>   
+  </div>   
+<% end %>   
