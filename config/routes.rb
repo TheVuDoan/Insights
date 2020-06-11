@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :youtube_videos
     resources :users
     resources :admins
+    resources :sources 
     resources :posts do
       member do
         put :toggle

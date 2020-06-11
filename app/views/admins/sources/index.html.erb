@@ -1,0 +1,54 @@
+<h1 class="h3 mb-2 text-gray-800">Tất cả nguồn tin</h1>
+<p class="mb-4">Xem danh sách tất cả nguồn tin.</p>
+
+<div class="card mb-4">
+  <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+    <h6 class="m-0">Tìm kiếm</h6>
+  </a>
+  <div class="collapse" id="collapseCardExample">
+    <div class="card-body">
+      <%= search_form_for @q, url: admins_sources_path, method: :get, enforce_utf8: false do |f| %>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="post_title">Tên</label>
+            <%= f.text_field "name_cont", class: "form-control", placeholder: 'Nhập tên' %>
+          </div>
+        </div>
+        <%= button_tag(type: "submit", class: "btn btn-primary", name: nil) do %>
+          Tìm kiếm
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Slug</th>
+        <th>Đường dẫn</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sources.each do |source| %>
+        <tr>
+          <td><%= source.id %></td>
+          <td><%= source.name %></td>
+          <td><%= source.slug %></td>
+          <td><%= source.url %></td>
+          <td width="120px">
+            <%= link_to 'Chỉnh sửa', edit_admins_source_path(source), class: "btn btn-success btn-sm mb-2 small" %>
+            <%= link_to 'Chi tiết', admins_source_path(source), class: "btn btn-primary btn-sm mb-2 small" %>
+            <%= link_to 'Xóa', admins_source_path(source), method: :delete, class: "btn btn-danger btn-sm mb-2 small" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @sources %>

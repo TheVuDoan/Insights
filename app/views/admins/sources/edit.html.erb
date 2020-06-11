@@ -1,0 +1,44 @@
+<%= form_for @source, url: {action: :update} do |f| %>   
+  <div>   
+    <h3>Chỉnh sửa Nguồn Tin</h3>   
+  </div>   
+  <div>   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="source_name">Tên</label>
+        <%= f.text_field "name", class: "form-control", placeholder: 'Nhập tên' %>
+      </div>
+    </div>  
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="source_slug">Slug</label>
+        <%= f.text_field "slug", class: "form-control", placeholder: 'Nhập slug' %>
+      </div>
+    </div>  
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="source_url">URL</label>
+        <%= f.text_field "url", class: "form-control", placeholder: 'Nhập url' %>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="source_logo">Logo url</label>
+        <%= f.text_field "logo", class: "form-control", placeholder: 'Nhập logo url' %>
+      </div>
+    </div>  
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="source_icon">Icon url</label>
+        <%= f.text_field "icon", class: "form-control", placeholder: 'Nhập icon url' %>
+      </div>
+    </div> 
+  </div>   
+  <div>   
+    <%= f.submit 'Chỉnh sửa nguồn tin', class: "btn btn-primary" %>   
+  </div>   
+<% end %>   

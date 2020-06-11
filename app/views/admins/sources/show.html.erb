@@ -1,0 +1,44 @@
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td class="font-weight-bold" width="200px">ID</td>
+      <td>
+        <%= @source.id %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Tên</td>
+      <td>
+        <%= @source.name %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">Slug</td>
+      <td>
+        <%= @source.slug %>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold">URL</td>
+      <td>
+        <a href="<%= @source.url %>"><%= @source.url %></a>
+      </td>
+    </tr>
+        <tr>
+      <td class="font-weight-bold">Logo</td>
+      <td>
+        <% if @source.logo.present? %>
+          <img src="<%= @source.logo %>" class="mb-2 post-image">
+        <% end %>
+      </td>
+    </tr>
+        <tr>
+      <td class="font-weight-bold">Icon</td>
+      <td>
+        <% if @source.icon.present? %>
+          <img src="<%= @source.icon %>" class="mb-2">
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+<table>
