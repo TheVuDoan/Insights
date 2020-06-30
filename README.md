@@ -1,24 +1,101 @@
-# README
+## INSIGHTS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hệ thống tự động thu thập tin tức từ các trang báo điện tử, và gợi ý tới người dùng những tin tức phù hợp.
 
-Things you may want to cover:
+### Hướng dẫn cài đặt
 
-* Ruby version
+(Hướng dẫn cài đặt dành cho hệ điều hành Linux)
 
-* System dependencies
+1. Cài đặt Ruby
 
-* Configuration
+* Chuẩn bị các thư viện liên quan
 
-* Database creation
+```
+    sudo apt-get install curl
+    sudo apt-get install gnupg2
+```
 
-* Database initialization
+* Cài đặt RVM
 
-* How to run the test suite
+RVM viết tắt của "Ruby Version Manager" (Bộ quản lý phiên bản Ruby). RVM cung cấp cách hiệu quả để cài đặt Ruby với các phiên bản bất kỳ trên Ubuntu.
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+    gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    curl -sSL https://get.rvm.io | bash -s stable
+```
 
-* Deployment instructions
+Sau khi cài đặt, reset cửa sổ terminal. Cài đặt những thư viện khác một cách tự động bằng câu lệnh:
+```
+rvm requirements
+```
+Để kiểm tra, thử liệt kê những phiên bản ruby hiện tại:
+```
+rvm list known
+```
 
-* ...
+* Cài đặt Ruby
+```
+rvm install 2.6.5
+```
+Trong trường hợp có nhiều hơn 1 phiên bản ruby trong máy, cần chỉ định phiên bản ruby sẽ sử dụng:
+```
+rvm use 2.4.0 --default
+```
+
+*Chú ý, nếu gặp phải lỗi*
+```
+RVM is not a function, selecting rubies with 'rvm use ...' will not work.
+ 
+You need to change your terminal emulator preferences to allow login shell.
+Sometimes it is required to use `/bin/bash --login` as the command.
+Please visit https://rvm.io/integration/gnome-terminal/ for a example.
+```
+*Làm theo hướng dẫn, thực thi lệnh `/bin/bash --login` và restart lại cửa sổ terminal.*
+
+Kiểm tra phiên bản Ruby vừa cài đặt
+```
+ruby --version
+```
+
+* Cài đặt Rails
+```
+gem install rails --version=5.2.3
+```
+Kiểm tra phiên bản vừa cài đặt
+```
+rails -v
+```
+
+* Cài đặt MySQL
+```
+sudo apt-get install mysql
+```
+
+* Cài đặt project
+Pull từ github
+```
+git clone https://github.com/TheVuDoan/Insights.git
+```
+Hoặc giải nén file đính kèm
+
+* Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
+Làm theo hướng dẫn chi tiết tại trang: https://github.com/Fullscreen/yt#configuring-your-app
+
+Sau khi có `api_key`, tạo file .env ở thư mục gốc theo mẫu
+```
+YOUTUBE_API_KEY=<your_api_key>
+```
+Trong terminal, gõ lệnh sau để ghi các task vào file crontab
+```
+whenever -w
+```
+Như vậy là hệ thống sẽ tự động thu thập tin tức từ các trang báo điện tử và Youtube
+
+* Cấu hình gửi mail cho người dùng
+Thêm vào file .env những trường sau
+```
+SENDMAIL_PASSWORD=<your_password>
+SENDMAIL_USERNAME=<your_email>
+MAIL_HOST=localhost:3000
+```
+
