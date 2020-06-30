@@ -57,7 +57,7 @@ Kiểm tra phiên bản Ruby vừa cài đặt
 ruby --version
 ```
 
-* Cài đặt Rails
+2. Cài đặt Rails
 ```
 gem install rails --version=5.2.3
 ```
@@ -66,12 +66,12 @@ Kiểm tra phiên bản vừa cài đặt
 rails -v
 ```
 
-* Cài đặt MySQL
+3. Cài đặt MySQL
 ```
 sudo apt-get install mysql
 ```
 
-* Cài đặt project
+4. Cài đặt project
 
 Pull từ github
 ```
@@ -79,7 +79,7 @@ git clone https://github.com/TheVuDoan/Insights.git
 ```
 Hoặc giải nén file đính kèm
 
-* Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
+5. Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
 
 Làm theo hướng dẫn chi tiết tại trang: https://github.com/Fullscreen/yt#configuring-your-app
 
@@ -93,7 +93,7 @@ whenever -w
 ```
 Như vậy là hệ thống sẽ tự động thu thập tin tức từ các trang báo điện tử và Youtube
 
-* Cấu hình gửi mail cho người dùng
+6. Cấu hình gửi mail cho người dùng
 
 Thêm vào file .env những trường sau
 ```
@@ -102,3 +102,32 @@ SENDMAIL_USERNAME=<your_email>
 MAIL_HOST=localhost:3000
 ```
 
+7. Khởi tạo database
+Cấu hình database.yml theo tài khoản MySQL. Ví dụ
+```
+development:
+  adapter: mysql2
+  database: Insights
+  host: localhost
+  username: dev
+  password: 123456
+  encoding: utf8
+```
+
+Trong terminal, gõ lệnh sau để khởi tạo CSDL:
+```
+rails db:migrate
+```
+
+Thêm các nguồn tin và thể loại:
+```
+rake db:seed
+```
+
+8. Chạy project
+
+Trong terminal, gõ lệnh
+```
+rails s
+```
+Truy cập đường dẫn `localhost:3000` để xem kết quả
