@@ -6,7 +6,7 @@ Hệ thống tự động thu thập tin tức từ các trang báo điện tử
 
 (Hướng dẫn cài đặt dành cho hệ điều hành Linux)
 
-1. Cài đặt Ruby
+#### 1. Cài đặt Ruby
 
 * Chuẩn bị các thư viện liên quan
 
@@ -57,7 +57,7 @@ Kiểm tra phiên bản Ruby vừa cài đặt
 ruby --version
 ```
 
-2. Cài đặt Rails
+#### 2. Cài đặt Rails
 ```
 gem install rails --version=5.2.3
 ```
@@ -66,12 +66,12 @@ Kiểm tra phiên bản vừa cài đặt
 rails -v
 ```
 
-3. Cài đặt MySQL
+#### 3. Cài đặt MySQL
 ```
 sudo apt-get install mysql
 ```
 
-4. Cài đặt project
+#### 4. Cài đặt project
 
 Pull từ github
 ```
@@ -79,7 +79,7 @@ git clone https://github.com/TheVuDoan/Insights.git
 ```
 Hoặc giải nén file đính kèm
 
-5. Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
+#### 5. Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
 
 Làm theo hướng dẫn chi tiết tại trang: https://github.com/Fullscreen/yt#configuring-your-app
 
@@ -93,7 +93,7 @@ whenever -w
 ```
 Như vậy là hệ thống sẽ tự động thu thập tin tức từ các trang báo điện tử và Youtube
 
-6. Cấu hình gửi mail cho người dùng
+#### 6. Cấu hình gửi mail cho người dùng
 
 Thêm vào file .env những trường sau
 ```
@@ -102,7 +102,7 @@ SENDMAIL_USERNAME=<your_email>
 MAIL_HOST=localhost:3000
 ```
 
-7. Khởi tạo database
+#### 7. Khởi tạo database
 Cấu hình database.yml theo tài khoản MySQL. Ví dụ
 ```
 development:
@@ -124,7 +124,7 @@ Thêm các nguồn tin và thể loại:
 rake db:seed
 ```
 
-8. Chạy project
+#### 8. Chạy project
 
 Trong terminal, gõ lệnh
 ```
