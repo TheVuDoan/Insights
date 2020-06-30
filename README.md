@@ -1,4 +1,4 @@
-## INSIGHTS
+# INSIGHTS
 
 Hệ thống tự động thu thập tin tức từ các trang báo điện tử, và gợi ý tới người dùng những tin tức phù hợp.
 
@@ -11,8 +11,8 @@ Hệ thống tự động thu thập tin tức từ các trang báo điện tử
 * Chuẩn bị các thư viện liên quan
 
 ```
-    sudo apt-get install curl
-    sudo apt-get install gnupg2
+sudo apt-get install curl
+sudo apt-get install gnupg2
 ```
 
 * Cài đặt RVM
@@ -20,8 +20,8 @@ Hệ thống tự động thu thập tin tức từ các trang báo điện tử
 RVM viết tắt của "Ruby Version Manager" (Bộ quản lý phiên bản Ruby). RVM cung cấp cách hiệu quả để cài đặt Ruby với các phiên bản bất kỳ trên Ubuntu.
 
 ```
-    gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-    curl -sSL https://get.rvm.io | bash -s stable
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
 ```
 
 Sau khi cài đặt, reset cửa sổ terminal. Cài đặt những thư viện khác một cách tự động bằng câu lệnh:
@@ -39,7 +39,7 @@ rvm install 2.6.5
 ```
 Trong trường hợp có nhiều hơn 1 phiên bản ruby trong máy, cần chỉ định phiên bản ruby sẽ sử dụng:
 ```
-rvm use 2.4.0 --default
+rvm use 2.6.5 --default
 ```
 
 *Chú ý, nếu gặp phải lỗi*
@@ -72,6 +72,7 @@ sudo apt-get install mysql
 ```
 
 * Cài đặt project
+
 Pull từ github
 ```
 git clone https://github.com/TheVuDoan/Insights.git
@@ -79,9 +80,10 @@ git clone https://github.com/TheVuDoan/Insights.git
 Hoặc giải nén file đính kèm
 
 * Đăng kí ứng dụng google (phục vụ cho tính năng thu thập video từ youtube)
+
 Làm theo hướng dẫn chi tiết tại trang: https://github.com/Fullscreen/yt#configuring-your-app
 
-Sau khi có `api_key`, tạo file .env ở thư mục gốc theo mẫu
+Sau khi có `api_key`, tạo file .env ở thư mục gốc, thêm vào trường
 ```
 YOUTUBE_API_KEY=<your_api_key>
 ```
@@ -92,6 +94,7 @@ whenever -w
 Như vậy là hệ thống sẽ tự động thu thập tin tức từ các trang báo điện tử và Youtube
 
 * Cấu hình gửi mail cho người dùng
+
 Thêm vào file .env những trường sau
 ```
 SENDMAIL_PASSWORD=<your_password>
