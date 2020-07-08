@@ -1,0 +1,29 @@
+<h1 class="h3 mb-2 text-gray-800">Nhật ký thu thập tin tức</h1>
+<p class="mb-4">Xem nhật ký thu thập tin tức.</p>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Bắt đầu</th>
+        <th>Kết thúc</th>
+        <th>Kết quả</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @batch_logs.each do |log| %>
+        <tr>
+          <td><%= log.id %></td>
+          <td><%= log.batch %></td>
+          <td><%= log.start_at %></td>
+          <td><%= log.end_at %></td>
+          <td><%= log.result %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @batch_logs %>

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :admins
     resources :sources 
     resources :categories
+    resources :batch_logs
     resources :posts do
       member do
         put :toggle
