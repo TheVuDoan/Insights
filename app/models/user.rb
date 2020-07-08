@@ -14,7 +14,11 @@ class User < ApplicationRecord
   before_create :set_default_info
 
   def view_count
-    Like.where(user_id: id).count
+    View.where(user_id: id).sum(:count)
+  end
+
+  def recommend_view_count
+    View.where(user_id: id).sum(:recommend_view_count)
   end
 
   def like_count

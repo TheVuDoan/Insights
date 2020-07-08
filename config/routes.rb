@@ -29,7 +29,11 @@ Rails.application.routes.draw do
   namespace :admins do
     root "dashboard#index"
     resources :youtube_videos
-    resources :users
+    resources :users do
+      collection do
+        get :recommend_status
+      end
+    end
     resources :admins
     resources :sources 
     resources :categories
