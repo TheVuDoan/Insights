@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-xl-12">
       <div class="d-sm-flex mb-2 post-header">
-        <% if user_signed_in? || session[:recent_posts].present? %>
+        <% if (user_signed_in? && !current_user.no_iteraction?) || session[:recent_posts].present? %>
           <h5 class="ml-3 mt-2 font-weight-bold">Dựa Trên Tin Đã Xem</h5>
         <% else %>
           <h5 class="ml-3 mt-2 font-weight-bold">Bạn Có Thể Thích</h5>

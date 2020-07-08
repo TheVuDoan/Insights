@@ -25,6 +25,10 @@ class User < ApplicationRecord
     Bookmark.where(user_id: id).count
   end
 
+  def no_iteraction?
+    view_count + like_count + bookmark_count == 0
+  end
+
   def report_count
     Report.where(user_id: id).count
   end

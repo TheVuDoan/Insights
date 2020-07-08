@@ -23,10 +23,14 @@ class HomeController < ApplicationController
 
   def set_recommend_post_data
     if user_signed_in?
-      @recommend_posts = Post.active.recommend_posts_for_user(current_user.id)&.first(RECOMMEND_LIMIT)
+      if current_user.no_iteraction? 
+        @recommend_posts = Post.active.most_viewed_daily.first(RECOMMEND_LIMIT)
+      else
+        @recommend_posts = Post.active.recommend_posts_for_user(current_user.id)&.first(RECOMMEND_LIMIT)
+      end
     elsif session[:recent_posts].present?
       @recommend_posts = Post.active.recommend_posts(session[:recent_posts])&.first(RECOMMEND_LIMIT)
-    else 
+    else
       @recommend_posts = Post.active.most_viewed_daily.first(RECOMMEND_LIMIT)
     end
   end
